@@ -34,7 +34,7 @@
 
 ### Ciclos
 `while`     # *Inicia un ciclo `while`*<br>
-`for`       # *Inicia un ciclo `while`*<br>
+`for`       # *Inicia un ciclo `for`*<br>
 `break`     # *Quiebra el ciclo en el que está*<br>
 `continue`	# *Continúa con la siguiente iteración del ciclo en el que está*<br>
 
