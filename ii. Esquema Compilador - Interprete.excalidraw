@@ -1591,45 +1591,6 @@
       "baseline": 31
     },
     {
-      "type": "freedraw",
-      "version": 6,
-      "versionNonce": 1743323269,
-      "isDeleted": false,
-      "id": "eXTVHGAQl0vJ31kKYGElY",
-      "fillStyle": "hachure",
-      "strokeWidth": 1,
-      "strokeStyle": "solid",
-      "roughness": 2,
-      "opacity": 100,
-      "angle": 0,
-      "x": 5328.1713717187795,
-      "y": -83.14076823330242,
-      "strokeColor": "#000000",
-      "backgroundColor": "transparent",
-      "width": 0.0001,
-      "height": 0.0001,
-      "seed": 1436492578,
-      "groupIds": [],
-      "roundness": null,
-      "boundElements": [],
-      "updated": 1694260017556,
-      "link": null,
-      "locked": false,
-      "points": [
-        [
-          0,
-          0
-        ],
-        [
-          0.0001,
-          0.0001
-        ]
-      ],
-      "lastCommittedPoint": null,
-      "simulatePressure": true,
-      "pressures": []
-    },
-    {
       "type": "arrow",
       "version": 447,
       "versionNonce": 889625541,

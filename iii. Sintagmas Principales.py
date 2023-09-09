@@ -16,31 +16,37 @@
 # **    Exponente       2 ** 3 = 8
 
 "Operadores 'aumentados'"
-ent : int = 0
-bul : bool = True
+def operadores() -> None:
+    ent : int = 0
+    bul : bool = True
 
-ent += 1	# ent = ent + 1
-ent -= 1	# ent = ent - 1
-ent *= 1	# ent = ent * 1
-ent /= 1	# ent = ent / 1
-ent %= 1	# ent = ent % 1
+    ent += 1	# ent = ent + 1
+    ent -= 1	# ent = ent - 1
+    ent *= 1	# ent = ent * 1
+    ent /= 1	# ent = ent / 1
+    ent %= 1	# ent = ent % 1
 
-bul &= True # bul = (bul and True)
-
+    bul &= True # bul = (bul and True)
 
 #import parcial y con alias
 import pandas as pd
-from typing import Callable 
+from typing import Callable
 
-#alias de tipos
-funcionQueTomaStryDevuelveInt = Callable[[str],int]
+#tipos y alias de tipos
+w : int # pista de tipo int
+x : int | str # pista de tipo unión [int|str]
+y : list[str] # pista de tipo compuesto list de strings
+z : Callable[[bool],str] # pista de tipo callable que toma un booleano como parámetro y retorna un int
+
+funcionQueTomaStryDevuelveInt = Callable[[str],int] # alias de un tipo callable
 
 #ciclos for indexados con 'enumarate'
-for idx,b in enumerate(vector): 
-    print(f"{idx=}|{b=}")
+def imprimirIndiceyElemento(vector: list) -> None:
+    for idx,b in enumerate(vector): 
+        print(f"{idx=}|{b=}")
 
 #ciclos con else
-def ciclosConCierre(limiteRango : int  = 50):
+def ciclosConElse(limiteRango : int  = 50):
     i : int
     for i in range (limiteRango):
         print(f'{i=}')
