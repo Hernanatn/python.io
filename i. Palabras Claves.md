@@ -1,5 +1,28 @@
 # Palabras Claves
 
+## Tipos "Primitivos"
++`object`
++`bool`
+### Numéricos
++`int`
++`float`
++`complex`
+### Secuencias
+#### Mutables
++`list`
++`bytearray`
+#### Inmutable
++`str`
++`tuple`
++`range`
++`bytes`
+### Conjuntos
++`set`
++`frozenset`
+### Mapeo
++`dict`
+
+
 ## Condicionales y operadores lógicos:
 +`if`; `elif`; `else`    # *Condicionales básicos*<br>
 +`and`; `or`; `not`      # *Operadores Lógicos*<br>
