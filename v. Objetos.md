@@ -173,7 +173,7 @@ def alimentar(comida : int | Interable[int]):
         self.hambre -= comida
 ```
 
-### **EJEMPLO** Implementación de una lista personalizada, con @total_orgering e interfaz
+### **EJEMPLO** Implementación de una lista personalizada, con @total_ordering e interfaz
 ```Python
 from collections.abc import MutableSequence
 from functools import total_ordering
