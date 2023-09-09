@@ -88,11 +88,13 @@ lista : list[int] = [1,2,3,4,5,6,7,8,9,10]
 
 
 "el sintagma"
-listaCuadrados : list[int] = [imprimirCuadrado(num) for num in lista if num % 2 == 0]
+listaCuadrados : list[int] = [imprimirYDevolverCuadrado(num) for num in lista if num % 2 == 0]
 
 "es equivalente a"
 listaCuadrados : list[int] = []
 for num in lista:
     if num % 2 == 0:
-        listaCuadrados.append(imprimirCuadrado(num))
+        listaCuadrados.append(imprimirYDevolverCuadrado(num))
+
+
 

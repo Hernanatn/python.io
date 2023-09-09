@@ -114,7 +114,7 @@ Aunque Python no es un lenguaje dedicado a la programación funcional, incluye a
 
 Una **función de orden superior** es aquella que toma otras funciones como parametro y las llama detro de su cuerpo.
 
-```
+```Python
 from typing import Callable
 
 #-----------ALIAS TIPOS-----------#
