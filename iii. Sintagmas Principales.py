@@ -60,3 +60,39 @@ def ciclosConElse(limiteRango : int  = 50):
         if j > 45: break
     else: print(f'No hubo quiebres')
 
+# try...except...finally en manejo de errores
+def unaFuncion(*args,**kwargs):
+    pass
+
+def manejarError(error):
+    pass
+
+def hacerSiempre():
+    pass
+
+try:
+    unaFuncion("hola",5,[2,3])
+except Exception as e:
+    manejarError(e)
+finally:
+    hacerSiempre()
+    
+
+#comprensión de listas
+def imprimirYDevolverCuadrado(numero : int):
+    cuadrado : int = numero*numero
+    print(numero*cuadrado)
+    return cuadrado
+
+lista : list[int] = [1,2,3,4,5,6,7,8,9,10]
+
+
+"el sintagma"
+listaCuadrados : list[int] = [imprimirCuadrado(num) for num in lista if num % 2 == 0]
+
+"es equivalente a"
+listaCuadrados : list[int] = []
+for num in lista:
+    if num % 2 == 0:
+        listaCuadrados.append(imprimirCuadrado(num))
+
