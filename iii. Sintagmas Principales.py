@@ -1,36 +1,56 @@
-# Sintagmas Principales
+"Sintagmas Principales"
+
+"Comentarios"
+# Esto es un comentario
+'''
+    Esto es una 'doc-string'
+'''
+
+"Operadores"
+# +     Suma            2 + 2 = 4
+# -     Resta           5 - 2 = 3
+# *     Multiplicación	3 * 3 = 9
+# /     División        22 / 8 = 2.75
+# //    División Entera	22 // 8 = 2
+# %     Resto           22 % 8 = 6
+# **    Exponente       2 ** 3 = 8
+
+"Operadores 'aumentados'"
+ent : int = 0
+bul : bool = True
+
+ent += 1	# ent = ent + 1
+ent -= 1	# ent = ent - 1
+ent *= 1	# ent = ent * 1
+ent /= 1	# ent = ent / 1
+ent %= 1	# ent = ent % 1
+
+bul &= True # bul = (bul and True)
 
 
-#import parcial con alias
-from typing import Callable as llamable
+#import parcial y con alias
+import pandas as pd
+from typing import Callable 
 
 #alias de tipos
-funcionQueTomaStryDevuelveInt = llamable[[str],int]
+funcionQueTomaStryDevuelveInt = Callable[[str],int]
 
-
-
-class Hola:
-    def hola(self, otro):
-        pass
-
-    def chau
-
-def hola():
-    with open("archivo.txt", "r",encoding="utf-8") as f:
-        linea : str
-        for linea in f: [(int(a),int(b.rstrip())) for a,b in linea.split()]
-
-
-
-vector : list [int] = [1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0]
-
+#ciclos for indexados con 'enumarate'
 for idx,b in enumerate(vector): 
     print(f"{idx=}|{b=}")
 
+#ciclos con else
+def ciclosConCierre(limiteRango : int  = 50):
+    i : int
+    for i in range (limiteRango):
+        print(f'{i=}')
+        if i > 45: break
+    else: print(f'No hubo quiebres')
 
-    x = Hola()
-
-    x
-
-
+    j : int = 0
+    while i < limiteRango:
+        print(f'{j=}')
+        j+=1
+        if j > 45: break
+    else: print(f'No hubo quiebres')
 
