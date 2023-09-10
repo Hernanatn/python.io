@@ -2,6 +2,7 @@
 
 "Comentarios"
 # Esto es un comentario
+
 '''
     Esto es una 'doc-string'
 '''
@@ -27,6 +28,8 @@ def operadores() -> None:
     ent %= 1	# ent = ent % 1
 
     bul &= True # bul = (bul and True)
+
+"Bloques"
 
 #import parcial y con alias
 import pandas as pd
@@ -62,7 +65,7 @@ def ciclosConElse(limiteRango : int  = 50):
 
 # try...except...finally en manejo de errores
 def unaFuncion(*args,**kwargs):
-    pass
+    pass 
 
 def manejarError(error):
     pass
@@ -95,6 +98,3 @@ listaCuadrados : list[int] = []
 for num in lista:
     if num % 2 == 0:
         listaCuadrados.append(imprimirYDevolverCuadrado(num))
-
-
-

@@ -1,4 +1,4 @@
-# Palabras Claves
+# Palabras Claves y Tipos
 
 ## Tipos "Primitivos"
 +`object`
@@ -70,3 +70,29 @@
 +`try`       # *Inicio del bloque `try`...`except` determina el bloque que se **intentará** ejecutar*<br>	
 +`except`	 # *Porción del bloque `try`...`except` determina el bloque que se ejecutará en caso de que una excepción del tipo esperado sea levantada*<br>
 +`finally`	 # *Final (opcional) del bloque `try`...`except` determina el bloque que se ejecutará luego, indistintamente de si hubo o no excepciones*<br>
+
+
+## Veracidad de los valores
+Todos los tipos "primitivos" de Python pueden ser implícitamente *"casteados"* a un `bool`:
+
+### Valores *veraces*
+Por defecto todos los objetos **no-vacíos** en Python son *veraces* en el sentido de que pueden ser implícitamente *"casteados"* a `True` en evaluaciones del estilo:
+```Python
+x : int = 5
+if x: 
+    print(x)
+
+# >>> 5 
+```
+
+### Valores *falaces*
+Alternativamente, los valores **vacíos** son, por defecto, *falaces*.
+
+| Colecciones               | Números       | Constantes |
+|---------------------------|---------------|------------|
+| Listas vacías `[]`        | `int 0`       | `None`     |
+| Tuplas vacías `()`        | `float 0`     | `False`    |
+| Diccionarios vacíos `{}`  | `complex 0`   | -          |
+| Conjuntos vacíos `set()`  | -             | -          |
+| Cadenas vacías `""`       | -             | -          |
+| Rangos vacíos `Range(0)`  | -             | -          |

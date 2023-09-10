@@ -1,4 +1,4 @@
-# *funciones* en Python
+# *funciones*
 
 ## Definición
 <p>En Python las funciones son objetos de tipo object,callable,function. Se alocan en el heap con tres punteros en el stack. Uno que señala la función en la LUT, y otros dos utilizados para propósitos de recolección de basura.</p>
@@ -8,12 +8,11 @@ Se definen con la palabra clave `def`:
 def unaFunción() -> None:
     ...
 ```
-
 La forma *Pythonista* de documentar una función es utilizando doc-strings '''.  
 
 ## Argumentos
-Las funciones toman dos (2) tipos de argumentos:  
-+argumentos posicionales o `args` y  
+Las funciones toman dos tipos de argumentos:  
++argumentos posicionales o `args` y   
 +argumentos nominales o `kwargs`
 
 Por defecto todos los argumentos de una función son al mismo tiempo posicionales y nominales.
@@ -36,7 +35,7 @@ valorB : bool = otraFuncion(primerArgumento = 6, True)
 # >>> SyntaxError: Positional argument follows keyword argument.
 valorC : bool = otraFuncion(7, True)
 # >>> True
-valorD : bool = otraFuncion(primerArgumento = 0, True) # 0 es 'falsy'
+valorD : bool = otraFuncion(primerArgumento = 0, segundoArgumento = True) # 0 es 'falsy'
 # >>> False
 ```    
 

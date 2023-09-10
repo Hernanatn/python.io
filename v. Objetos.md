@@ -1,7 +1,7 @@
 # Objetos y Clases
-TODO en Python, en última instacia, es un objeto que hereda direca o indirectamente de la clase `object`. Esto tiene agunas propiedades particulares, la más importante de ella en lo que respecta a POO, refiere a las implicancias que tiene sobre como los objetos son alocados en memoria y como se implementan Clases.
+Todo en Python, en última instacia, es un objeto que hereda direca o indirectamente de la clase `object`. Esto tiene agunas propiedades particulares, la más importante respecto de a POO, refiere a las implicancias que tiene sobre como los objetos son alocados en memoria y como se implementan Clases.
 
-Las clases se declaran con la palabra clave `class`, pueden poseer atributos y las funciones internas-métodos- siempre llevan como primer argumento una referencia a la instancia, `self`.
+Las clases se declaran con la palabra clave `class`, pueden poseer atributos y las funciones internas -métodos- siempre llevan como primer argumento una referencia a la instancia, `self`.
 
 ## Declaración de Clases
 ```Python
@@ -83,6 +83,53 @@ print(instancia._MiClasePrivada__nombre)
 ```
 
 ### Atributos y objetos en memoria `__slots__` vs `__dict__`
+Por defecto, todos los objetos de Python implementan el atributo `__dict__` que es un diccionario de todos los atributos y métodos "públicos" de la instancia.  
+Este diccionario se almacena en el *heap* y es referenciado por un puntero en el *stack frame* del programa (ver vi. Esquema de Objetos en Memoria).
+
+El diccionario es una estructura de datos variable y dinámica. Esto implica, al menos, dos cuestiones:
++La alocción de memoria del diccionario debe ser dinámica
++La estructura intera del objeto, i.e. los atributos que *puede* tener, pueden variar luego de su inicialización.
+
+```Python
+class MiClaseDict():    
+
+    def __init__(self, nombre : str, edad : int):
+        self.nombre = nombre
+        self.edad = edad 
+
+dicto : MiClaseDict = MiClaseDict("juan",5)
+
+print(dicto.__dict__)
+# >>> {'nombre': 'juan', 'edad': 5}
+
+dicto.nuevoAtributo = "nuevo atributo" #es perfectamente legal agregar atributos en tiempo de ejecución
+print(dicto.__dict__)
+# >>> {'nombre': 'juan', 'edad': 5, 'nuevoAtributo': 'nuevoAtributo'}
+```
+
+La implementación de `__dict__` puede suponer penalidades de rendimiento, como así permitir anti-patrones como la modificación de las clases en curso de ejecución. Existe, sin embargo, una alternativa.
+
+Python permite declarar el atributo de clase `__slots__`. Este reemplaza al diccionario por una tupla de `str` la cual contiene los nombres de los atributos de la clase. La tupla es una estructa inmutable, yel alocador de memoria de Python aprovecha esto cambiando la estructura del objeto en memoria, guardando en el `stack` un puntero por cada atributo (los cuales viven en el `heap`).
+
+```Python
+class MiClaseSlots():
+    __slots__ = ("nombre","edad") # 
+
+    def __init__(self, nombre : str, edad : int):
+        self.nombre = nombre
+        self.edad = edad 
+
+sloto : MiClaseSlots = MiClaseSlots("pablo",7)
+
+print(sloto.__slots__)
+# >>> ('nombre','edad')
+
+print(sloto) 
+sloto.nuevoAtributo = "nuevo atributo" #es ilegal modificar una tupla y por lo tanto no se pueden agregar nuevos atributos
+# >>> AttributeError: 'MiClaseSlots' object has no attribute 'nuevoAtributo'
+```
+*Nota: una tupla en python pesa ~40bytes, mientras que un diccionario pesa ~232bytes. Lo que representa una diferencia espacial de 580%.*  
+*La magnitud absoluta no es tanta, pero en un programa que, por ejemplo, en el curso de ejecución instancie 1.000.000 de objetos (lo cual no resulta tan disparatado para un programa de mediana complejidad como puede ser un webscrapper) la implementación de `__dict__` implica 192 Mb de memoria extra utilizados tan sólo para instanciar aquellos objetos.* 
 
 ## Métodos
 ### Métodos de Instancia
@@ -90,10 +137,10 @@ Los métodos de instancia son las funciones vinculadas al objeto que toman como 
 ```Python
 class Numero():
     def sumar(self,otroNumero : int):
-        return self + 
+        return self += otro
 ```
 ### Métodos de Clase
-Además de métodos de instancia, las Clases pueden tener métodos en sí mismas. Estos métodos no dependen de ninguna instancias en particular ni pueden acceder a otros atributos que no sean los de la clase.  
+Además de métodos de instancia, las clases pueden tener métodos en sí mismas. Estos métodos no dependen de ninguna instancias en particular ni pueden acceder a otros atributos que no sean los de la clase.  
 Los métodos de clase se indican con el decorador `@classmethod` y toman como primer argumento una referencia a la clase, `cls`.
 
 ```Python
@@ -113,7 +160,7 @@ cadenaNueva = strFormateada.crearDesdeCSV("ruta/al/archivo.csv")
 
 ## Métodos 'Mágicos' (__dunder__)
 ### Construcción e Instanciación: __init()__ vs __new()__
-Si bien los objetos en python se instancian con el método "mágico" `__init()__`. Este no es en verdad un constructor. En verdad, el interprete, justo antes de llamar `__init__()` invoca otro método "mágico", `__new__()`, que es el verdadero encargado de crear y retornar el objeto. Por eso`__init()__` retorna `None`.  
+Si bien los objetos en python se instancian con el método "mágico" `__init__()`. Este no es en verdad un constructor. En verdad, el interprete, justo antes de llamar `__init__()` invoca otro método "mágico", `__new__()`, que es el verdadero encargado de crear y retornar el objeto. Por eso`__init()__` retorna `None`.  
 
 Dado que Python no expone al programador las operaciones de alocación de memoria, en general no es necesario utilizar `__new__()`, sinembargo esto puede ser útil en el patrón *"Singleton"* o, por ejemplo, para la implementación de Clases del usuario que dependen de `secuencias inmutables` como las tuplas, ya que estas son inmutables desde el instante en que son creadas.
 
@@ -123,7 +170,7 @@ Si intentáramos crear una tupla de `str` cuyos miembro fueran todos mayúsculos
 from typing import Iterable
 
 class TuplaMayus(tuple):
-    def __init__(cls, iterable : Iterable) -> None:
+    def __init__(self, iterable : Iterable) -> None:
         for indice, miembro in enumerate(iterable):
             self[indice] = miembro.upper()
 
