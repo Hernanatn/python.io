@@ -128,7 +128,7 @@ print(sloto)
 sloto.nuevoAtributo = "nuevo atributo" #es ilegal modificar una tupla y por lo tanto no se pueden agregar nuevos atributos
 # >>> AttributeError: 'MiClaseSlots' object has no attribute 'nuevoAtributo'
 ```
-*Nota: una tupla en python pesa ~40bytes, mientras que un diccionario pesa ~232bytes. Lo que representa una diferencia espacial de 580%.*  
+> *Nota: una tupla en python pesa ~40bytes, mientras que un diccionario pesa ~232bytes. Lo que representa una diferencia espacial de 580%.*  
 *La magnitud absoluta no es tanta, pero en un programa que, por ejemplo, en el curso de ejecución instancie 1.000.000 de objetos (lo cual no resulta tan disparatado para un programa de mediana complejidad como puede ser un webscrapper) la implementación de `__dict__` implica 192 Mb de memoria extra utilizados tan sólo para instanciar aquellos objetos.* 
 
 ## Métodos
@@ -190,7 +190,7 @@ class TuplaMayus(tuple):
         iterableMayus : Iterable = (e.upper() for e in iterable)
         return super().__new__(cls,iterableMayus)
 ```
-*Nota: `__new__ siempre debe retornar una instancia de la clase, es el constructor`*
+> *Nota: `__new__ siempre debe retornar una instancia de la clase, es el constructor`*
 
 ### Métodos @overload
 Python "vainilla" no permite la sobrecarga de métodos y funciones, sin embargo, la biblioteca estándar "overloading" incluye el decorador con aquella funcionalidad.

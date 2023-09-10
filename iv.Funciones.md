@@ -55,8 +55,8 @@ valorB : bool = otraFuncion(segundoArgumento = False)
 ### *Args y **Kwargs
 Una función puede tomar una cantidad indefinida de argumentos, tanto posicionales como nominales.  
 Los argumentos indeterminados se guardan en una `collection`, una `list[str]` para los `*args` y un `dict[str,t_argumento]` para los `**kwargs`  
-*Nota: El nombre de las colecciones se declara en la firma de la función usando estrellas*  
-*Nota: En el `dict` de `**kwargs` el nombre de cada argumento es su llave*  
+> *Nota: El nombre de las colecciones se declara en la firma de la función usando estrellas*  
+> *Nota: En el `dict` de `**kwargs` el nombre de cada argumento es su llave*  
 ```Python
 def muchosArgumentos(argPrimero : int, argSegundo : float, *posicionales, **nominales):
     ...
