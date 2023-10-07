@@ -1,4 +1,6 @@
-# Objetos y Clases
+# Objetos. *Parte 1)*
+**Estructura General**
+
 Todo en Python, en última instacia, es un objeto que hereda direca o indirectamente de la clase `object`. Esto tiene agunas propiedades particulares, la más importante respecto de a POO, refiere a las implicancias que tiene sobre como los objetos son alocados en memoria y como se implementan Clases.
 
 Las clases se declaran con la palabra clave `class`, pueden poseer atributos y las funciones internas -métodos- siempre llevan como primer argumento una referencia a la instancia, `self`.
@@ -109,7 +111,7 @@ print(dicto.__dict__)
 
 La implementación de `__dict__` puede suponer penalidades de rendimiento, como así permitir anti-patrones como la modificación de las clases en curso de ejecución. Existe, sin embargo, una alternativa.
 
-Python permite declarar el atributo de clase `__slots__`. Este reemplaza al diccionario por una tupla de `str` la cual contiene los nombres de los atributos de la clase. La tupla es una estructa inmutable, yel alocador de memoria de Python aprovecha esto cambiando la estructura del objeto en memoria, guardando en el `stack` un puntero por cada atributo (los cuales viven en el `heap`).
+Python permite declarar el atributo de clase `__slots__`. Este reemplaza al diccionario por una tupla de `str` la cual contiene los nombres de los atributos de la clase. La tupla es una estructa inmutable, y el alocador de memoria de Python aprovecha esto cambiando la estructura del objeto en memoria, guardando en el `stack` un puntero por cada atributo (los cuales viven en el `heap`).
 
 ```Python
 class MiClaseSlots():
@@ -158,13 +160,17 @@ class strFormateada(str):
 cadenaNueva = strFormateada.crearDesdeCSV("ruta/al/archivo.csv")
 ```
 
-## Métodos 'Mágicos' (__dunder__)
+## Métodos 'Mágicos' (*__dunder__*)
 ### Construcción e Instanciación: __init()__ vs __new()__
-Si bien los objetos en python se instancian con el método "mágico" `__init__()`. Este no es en verdad un constructor. En verdad, el interprete, justo antes de llamar `__init__()` invoca otro método "mágico", `__new__()`, que es el verdadero encargado de crear y retornar el objeto. Por eso`__init()__` retorna `None`.  
-
-Dado que Python no expone al programador las operaciones de alocación de memoria, en general no es necesario utilizar `__new__()`, sinembargo esto puede ser útil en el patrón *"Singleton"* o, por ejemplo, para la implementación de Clases del usuario que dependen de `secuencias inmutables` como las tuplas, ya que estas son inmutables desde el instante en que son creadas.
-
-Si intentáramos crear una tupla de `str` cuyos miembro fueran todos mayúsculos indistintamente de si fueron cargados en mayúscula o en mínuscula utilizando `__init__`, recibiríamos un error
+<div style="text-align: justify">
+Si bien los objetos en python se instancian con el método "mágico" <code>__init__()</code>. Este no es en verdad un constructor. En verdad, el interprete, justo antes de llamar <code>__init__()</code> invoca otro método "mágico", <code>__new__()</code>, que es el verdadero encargado de crear y retornar el objeto. Por eso<code>__init()__</code> retorna <code>None</code>.
+</div><br>
+<div style="text-align: justify">
+Dado que Python no expone al programador las operaciones de alocación de memoria, en general no es necesario utilizar <code>__new__()</code>, sinembargo esto puede ser útil en el patrón *"Singleton"* o, por ejemplo, para la implementación de Clases del usuario que dependen de <code>secuencias inmutables</code> como las tuplas, ya que estas son inmutables desde el instante en que son creadas.
+</div><br>
+<div style="text-align: justify">
+Si intentáramos crear una tupla de <code>str</code> cuyos miembro fueran todos mayúsculos indistintamente de si fueron cargados en mayúscula o en mínuscula utilizando <code>__init__</code>, recibiríamos un error
+</div><br>
 
 ```Python
 from typing import Iterable
@@ -173,14 +179,14 @@ class TuplaMayus(tuple):
     def __init__(self, iterable : Iterable) -> None:
         for indice, miembro in enumerate(iterable):
             self[indice] = miembro.upper()
-
 ...
 
 #>>> TypeError 'TuplaMayus' object does not support item assignment
 
 ```
-Esto sucede por que la tupla, al ser una colección inmutable no permite modificar sus elementos una vez que fue creada.  
-En su lugar se puede usar `__new__`
+<div style="text-align: justify">
+Esto sucede por que la tupla, al ser una colección inmutable no permite modificar sus elementos una vez que fue creada. En su lugar se puede usar <code>__new__</code>:
+</div>
 
 ```Python
 from typing import Iterable
@@ -193,7 +199,10 @@ class TuplaMayus(tuple):
 > *Nota: `__new__ siempre debe retornar una instancia de la clase, es el constructor`*
 
 ### Métodos @overload
+<div style="text-align: justify">
+</div><br>
 Python "vainilla" no permite la sobrecarga de métodos y funciones, sin embargo, la biblioteca estándar "overloading" incluye el decorador con aquella funcionalidad.
+
 ```Python
 from overloading import overload
 from collections import Iterable
@@ -220,124 +229,11 @@ def alimentar(comida : int | Interable[int]):
         self.hambre -= comida
 ```
 
-### **EJEMPLO** Implementación de una lista personalizada, con @total_ordering e interfaz
-```Python
-from collections.abc import MutableSequence
-from functools import total_ordering
-from typing import TypeVar, Generic
-
-_T = TypeVar('T')
-
-@total_ordering
-class MiLista(MutableSequence):
-
-    def __init__(
-        self,
-        listaInicial : list[_T] = None
-                ) -> None:  
-        if listaInicial:
-            if isinstance(listaInicial, list):
-                self.data[:] = listaInicial
-
-            elif isinstance(listaInicial, MiLista):
-                self.data[:] = listaInicial.data[:]
-            else:
-                self.data = list(listaInicial)
-
-    def __len__(self):
-        return len(self.data)
-
-    def __iter__(self):
-        for dato in self.data:
-            yield dato    
-
-    def __reversed__(self):
-        return self.data.reverse()
-
-    def __getitem__(self,indice : int):
-        if isinstance(indice, slice):
-            return self.__class__(self.data[indice])
-        else:
-            return self.data[indice] 
-
-    def __contains__(self,dato : _T):
-        return dato in self.data
-
-    def __setitem__(self, indice : int, dato : _T):
-        self.data[indice] = dato
-
-    def __delitem__(self, indice : int):
-        del self.data[int] 
-
-    def __castEstatico(self, otro):
-        return otro.data if isinstance(otro,MiLista) else otro
-
-    def __eq__ (self,otro):
-        return self.data == self.__castEstatico(otro)
-    
-    def __gt__ (self,otro):
-        return self.data > self.__castEstatico(otro)
-
-    def __add__(self, otro):
-        if isinstance(otro,MiLista): self.__class__(self.data + otro.data)
-        elif  isinstance(otro,type(self.data)): self.__class__(self.data + otro)
-
-    def __radd__(self, otro):
-        return self.__class__(self.data + otro.data) if isinstance(otro,MiLista) else None
-    
-    def __iadd__(self, otro):
-        if isinstance(otro, MiLista): self.data += otro.data
-        elif isinstance(otro, type(self.data)): self.data += otro
-        else: self.data += list(otro)
-        return self
-
-    def agregar(self, dato : _T):
-        self.data.append(dato)
-
-    def insertar(self, indice : int, dato: _T):
-        self.data.insert(indice, dato)
-
-    def soltar(self, indice : int=-1):
-        return self.data.pop(indice)
-
-    def eliminarDato(self, dato: _T):
-        self.data.remove(dato)
-
-    def limpiar(self):
-        self.data.clear()
-
-    def copiar(self):
-        return self.__class__(self)
-
-    def contar(self, dato: _T):
-        return self.data.count(dato)
-
-    def indice(self, indice : int, *posicionales):
-        return self.data.index(indice, *posicionales)
-
-    def invertir(self):
-        self.data.reverse()
-
-    def ordenar(self, /, *posicionales, **nominales):
-        self.data.sort(*posicionales, **nominales)
-
-    def extender(self, otro):
-        if isinstance(otro, MiLista): self.data.extend(otro.data)
-        else: self.data.extend(otro)
-
-
-    def __repr__(self):
-        return f"""<{self.__class__.__name__} data: {repr(self.data)}>"""
-    
-    def __llave(self):
-        return (self.attr_a, self.attr_b, self.attr_c)
-
-    def __hash__(self):
-        return hash(self.__llave())
-```  
-
 ## Herencia, `super().__init__()`
-Python permite que clases hereden a otras, absorviendo sus atributos y métodos. Sin embargo, para que un objeto de una clase *sea* de tipo de su clase madre, debe, al momento de instanciacion, instanciar tambien con el método de su madre. Esto se logra a traves de la referencia que todas las clases tiene a su clase inmediata superior, `super()` 
+<div style="text-align: justify">
+Python permite que clases hereden a otras, absorviendo sus atributos y métodos. Sin embargo, para que un objeto de una clase *sea* de tipo de su clase madre, debe, al momento de instanciacion, instanciar tambien con el método de su madre. Esto se logra a traves de la referencia que todas las clases tiene a su clase inmediata superior, <code>super()</code> 
+</div>
+
 ```Python
 class ClaseMadre():
 
@@ -349,4 +245,8 @@ class ClaseHija(claseMadre):
 *Nota todas las clases heredan implícitamente a `object`*
 
 
+## `type`, `super()`, *`__class__`*, *`__base__`*, *`__subclass__`*, `metaclass=`
 
+###
+
+### Creación de Tipos en tiempo de Ejecución

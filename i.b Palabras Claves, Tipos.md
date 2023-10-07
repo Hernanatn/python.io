@@ -1,35 +1,36 @@
 # Palabras Claves y Tipos
 
 ## Tipos "Primitivos"
-+`object`
-+`bool`
+- `object`
+- `bool`
+
 ### Numéricos
-+`int`
-+`float`
-+`complex`
+- `int`
+- `float`
+- `complex`
+
 ### Secuencias
 #### Mutables
-+`list`
-+`bytearray`
+- `list`
+- `bytearray`
 #### Inmutables
-+`str`
-+`tuple`
-+`range`
-+`bytes`
+- `str`
+- `tuple`
+- `range`
+- `bytes`
 ### Conjuntos
-+`set`
-+`frozenset`
+- `set`
+- `frozenset`
 ### Mapeo
-+`dict`
-
+- `dict`
 
 ## Condicionales y operadores lógicos:
-+`if`; `elif`; `else`    # *Condicionales básicos*<br>
-+`and`; `or`; `not`      # *Operadores Lógicos*<br>
-+`True` y `False`        # *Booleanos*<br>
-+`assert`	             # *Condicional que equivale a `if not [condicion]: raise AssertionError`*<br>
-+`in`	                 # *Condicional que evalúa si un valor está presente en alguna `colección`*<br>
-+`is`                    # *Condicional que equivale a `[a] == [b]`*<br>
+- `if`; `elif`; `else`    # *Condicionales básicos*<br>
+- `and`; `or`; `not`      # *Operadores Lógicos*<br>
+- `True` y `False`        # *Booleanos*<br>
+- `assert`	              # *Condicional que equivale a `if not [condicion]: raise AssertionError`*<br>
+- `in`	                  # *Condicional que evalúa si un valor está presente en alguna `colección`*<br>
+- `is`                    # *Condicional que evalua si dos variables **apuntan** al mismo objeto en memoria *<br>
 <br>
 
 ## Objetos
@@ -71,6 +72,7 @@
 +`except`	 # *Porción del bloque `try`...`except` determina el bloque que se ejecutará en caso de que una excepción del tipo esperado sea levantada*<br>
 +`finally`	 # *Final (opcional) del bloque `try`...`except` determina el bloque que se ejecutará luego, indistintamente de si hubo o no excepciones*<br>
 
+------------------------------------------------------
 
 ## Veracidad de los valores
 Todos los tipos "primitivos" de Python pueden ser implícitamente *"casteados"* a un `bool`:
@@ -86,7 +88,7 @@ if x:
 ```
 
 ### Valores *falaces*
-Alternativamente, los valores **vacíos** son, por defecto, *falaces*.
+Alternativamente, los valores **vacíos** son, por defecto, *falaces*. Pueden ser *"casteados"* implícitamente a `false`
 
 | Colecciones               | Números       | Constantes |
 |---------------------------|---------------|------------|

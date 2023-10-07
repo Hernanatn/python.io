@@ -1,25 +1,24 @@
-# *funciones*
+# *funciones* (en profundidad)
 
 ## Definición
 <p>En Python las funciones son objetos de tipo object,callable,function. Se alocan en el heap con tres punteros en el stack. Uno que señala la función en la LUT, y otros dos utilizados para propósitos de recolección de basura.</p>
 
 Se definen con la palabra clave `def`:  
 ```Python
-def unaFunción() -> None:
+def unaFunción(argumento : tipoArgumento) -> tipoRetorno:
     ...
-```
-La forma *Pythonista* de documentar una función es utilizando doc-strings '''.  
+``` 
 
 ## Argumentos
 Las funciones toman dos tipos de argumentos:  
-+argumentos posicionales o `args` y   
-+argumentos nominales o `kwargs`
+- argumentos posicionales o `args`; y   
+- argumentos nominales o `kwargs`
 
 Por defecto todos los argumentos de una función son al mismo tiempo posicionales y nominales.
 ```Python
 def otraFuncion(primerArgumento : int, segundoArgumento : bool) -> bool:
     '''
-    Funcion que toma un valor entero y un booleano devuelve and entre el 'truthy' del entero y el booleano
+    Funcion que toma un valor entero y un booleano devuelve `and` entre la 'veracidad' del entero y el booleano
     :param: primerArgumento [int]. el entero.
     :param: segundoArgumento [bool]. el booleano
     :return: [bool] and entre ambos parámetros.
@@ -27,7 +26,7 @@ def otraFuncion(primerArgumento : int, segundoArgumento : bool) -> bool:
     return (primerArgumento and segundoArgumento)
 ```
 
-Se puede llamar a la función declarando los argumentos de ambas formas, pero una vez que se declaró un 'kwarg' los subsiguientes deben ser 'kwargs' también. 
+Se puede llamar a la función pasando los argumentos de ambas formas, pero una vez que se pasó un '`kwarg`' los subsiguientes deben ser '`kwarg`s' también. 
 ```Python
 valorA : bool = otraFuncion(5, segundoArgumento = False)
 # >>> False
@@ -53,15 +52,17 @@ valorB : bool = otraFuncion(segundoArgumento = False)
 
 
 ### *Args y **Kwargs
-Una función puede tomar una cantidad indefinida de argumentos, tanto posicionales como nominales.  
-Los argumentos indeterminados se guardan en una `collection`, una `list[str]` para los `*args` y un `dict[str,t_argumento]` para los `**kwargs`  
-> *Nota: El nombre de las colecciones se declara en la firma de la función usando estrellas*  
+<div style="text-align : justify">Una función puede tomar una cantidad indefinida de argumentos, tanto posicionales como nominales.  
+Los argumentos indeterminados se guardan en una <code>collection</code>, un <code>tuple[str]</code> para los <code>*args</code> y un <code>dict[str,tipoArgumento]</code> para los <code>**kwargs</code></div><br>
+
+> *Nota: El nombre de las colecciones se declara en la firma de la función usando estrellas*<br>
+
 > *Nota: En el `dict` de `**kwargs` el nombre de cada argumento es su llave*  
 ```Python
 def muchosArgumentos(argPrimero : int, argSegundo : float, *posicionales, **nominales):
     ...
 ```
-Dentro de la función se puede acceder a las colecciones por su nombre. Se estila usar el sintagma `elemento in colección`.
+Dentro de la función se puede acceder a las colecciones por su nombre. Se estila usar el sintagma <code>for</code> <i>elemento</i> <code>in</code> <i>colección</i><code>: ... </code>.
 
 ```Python
 def muchosArgumentos(argPrimero : int, argSegundo : float, *posicionales, **nominales):
@@ -73,9 +74,9 @@ def muchosArgumentos(argPrimero : int, argSegundo : float, *posicionales, **nomi
 ```
 
 Los `*args` y `**kwargs` suelen usarse para:  
-+Funciones que llaman otras funciones con parametros opcionales.
-+Funciones que utilizan colleciones (en general diccionarios) con elementos opcionales
-+Sistematizar objetos config.
+- Funciones que llaman otras funciones con parametros opcionales.
+- Funciones que utilizan colleciones (en general diccionarios) con elementos opcionales
+- Sistematizar objetos config.
 ```Python
 from bs4 import BeautifulSoup, ResultSet, Tag, NavigableString
 from requests import get as GET
@@ -152,15 +153,18 @@ def listarNotas( listadorMedio : Listador, categorizadorNotas : Categorizador) -
     return listadorMedio( categorizadorNotas )
 
 ```
-El ejemplo anterior presenta 3 funciones las cuales se componen para realizar la funcionalidad deseada - i.e. producir una Lista de Notas.  
-Como vemos, la función `categorizadorNotas` es una función de primer orden, una función **concreta** la cual toma ciertos parámetros que no son funciones y devuelve una tupla.  
-Por su parte, `listadorPerfil` es una función de otden ligeramente superior, es parcialmente concreta entanto tiene estado interno, detalles de implementación propios y produce efectos secundarios. Pero parte de su funcionalidad (la de producir la tupla de categorías), está delegada en *cualquier* Categorizador que le sea provisto como parámetro.  
-Finalmente, `listarNotas` no es más que una interfaz. Es una función de orden superior que llama a *cualquier* Listador que produzca una ListaNotas y le provee la correspondiente función categorizadora.
+<div style="text-align : justify">El ejemplo anterior presenta 3 funciones las cuales se componen para realizar la funcionalidad deseada - i.e. producir una Lista de Notas.  
+Como vemos, la función <code>categorizadorNotas</code> es una función de primer orden, una función **concreta** la cual toma ciertos parámetros que no son funciones y devuelve una tupla.<br><br>
+
+Por su parte, `listadorPerfil` es una función de otden ligeramente superior, es parcialmente concreta entanto tiene estado interno, detalles de implementación propios y produce efectos secundarios. Pero parte de su funcionalidad (la de producir la tupla de categorías), está delegada en *cualquier* Categorizador que le sea provisto como parámetro.<br>
+
+Finalmente, `listarNotas` no es más que una interfaz. Es una función de orden superior que llama a *cualquier* Listador que produzca una ListaNotas y le provee la correspondiente función categorizadora.</div>
 
 
 ### Lambdas (funciones anónimas)
 Se emplean con la siguiente sintaxis  
-`lambda` *variable* `:` procedimiento sobre la *variable*  
+> `lambda` *variable* `:` procedimiento sobre la *variable*.    
+
 Las `lambda`s pueden ser asignadas a variables, o pasadas como argumentos a funciones de orden superior.
 
 El sintagma
@@ -171,28 +175,6 @@ Es equivalente a
 ```Python
 def miLambda (nombre : str) -> str:
     return nombre.upper()
-```
-
-### @Decoradores 
-Los decoradores son *`azucar sintáctico`*para funciones de orden superior funciones de orden superior que toman como parámetro una función o clase.  
-Son funciones "envolventes" que pueden ser nuevamente llamadas.  
-Al utilizar un decorador sobre la definición de una función, el programador le indica al compilador que cada vez que esa función sea llamada, debe ser llamada a travez del evolvente determinado por el decorador.
-
-El sintagma
-```Python
-from Typing import Callable
-
-def repetir5Veces (unaFuncion : Callable, *posicionales) -> Callable:
-    for i in range (5):
-        unaFuncion(*posicionales)
-...
-@repetir5Veces
-def imprimirCuadrado(numero : int) -> int:
-    print(numero*numero)
-```
-Es equivalente a pedirle al compilador que cada vez que se llama a `imprimirCuadrado`, en su lugar se llame
-```Python
-repetir5Veces(imprimirCuadrado, numero)
 ```
 
 ## Generadores
@@ -226,10 +208,31 @@ print(next(rango))
 print(next(rango))
 print(next(rango))
 print(next(rango))
-
-
 #>>> 0
 #>>> 1
 #>>> 2
 #>>> 3
+```
+### @Decoradores 
+Los decoradores son *`azucar sintáctico`* para funciones de orden superior que toman como parámetro una función o clase. Son funciones "envolventes".  
+Al utilizar un decorador sobre la definición de una función, el programador le indica al compilador que cada vez que esa función sea llamada, debe ser llamada a travez del evolvente determinado por el decorador.
+
+El sintagma
+```Python
+from Typing import Callable
+
+def repetir5Veces (unaFuncion : Callable) -> Callable:
+    def envolvente(*posicionales)
+        for i in range (5):
+            yield unaFuncion(*posicionales)
+    return envolvente
+...
+
+@repetir5Veces
+def imprimirCuadrado(numero : int) -> int:
+    print(numero*numero)
+```
+Es equivalente a pedirle al compilador que cada vez que se llama a `imprimirCuadrado`, en su lugar se llame
+```Python
+repetir5Veces(imprimirCuadrado, numero)
 ```
