@@ -234,5 +234,5 @@ def imprimirCuadrado(numero : int) -> int:
 ```
 Es equivalente a pedirle al compilador que cada vez que se llama a `imprimirCuadrado`, en su lugar se llame
 ```Python
-repetir5Veces(imprimirCuadrado, numero)
+envolvente(numero)
 ```
