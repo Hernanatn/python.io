@@ -1,0 +1,177 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="html/estilos.css">
+    <link rel="stylesheet" href="https://unpkg.com/some-nice-basic-css/global.css" />
+
+    <script type = "text/javascript" src="html/pestañas.js"></script>
+  </head>
+  <body>
+    <h2 id="instalaci-n">Instalación</h2>
+    <p>El único requisito estricto para correr un script de Python es tener instalado el intérprete.</p>
+<div class="tab">
+  <button class="tablinks" onclick="abrirPestana(event, 'WindowsPy')">Windows</button>
+  <button class="tablinks" onclick="abrirPestana(event, 'LinuxPy')">Linux</button>
+  <button class="tablinks" onclick="abrirPestana(event, 'MacPy')">MacOS</button>
+</div>
+
+<div id="WindowsPy" class="tabcontent">
+  <h2>Windows</h3>
+  <h4>Instalación con asistente en Windows.</h4>
+  <p>Descargar el <a href="https://www.python.org/ftp/python/3.11.5/python-3.11.5-amd64.exe">asistente oficial distribuído por Python.org </a> y seguir la guía de instalación.
+  </p>
+  <h4> Instalación con Winget.</h4>
+  <p>
+  Abrir <code>CMD</code> y correr el comando</p>
+
+  <code>Powershell
+  &gt; winget install Pyhton.Pyhton</code>
+</div>
+
+<div id="LinuxPy" class="tabcontent">
+  <h2>GNU/Linux</h2>
+  <h4>Instalación con el administrador de paquetes de Linux.</h4>
+  <p> Abrir la <code>Terminal</code> y correr el comando</p>
+
+  <code>Bash
+  $ sudo apt-get install python3</code>
+</div>
+
+<div id="MacPy" class="tabcontent">
+  <h2>MacOS</h3>
+  <h4>Instalación con asistente en MacOS.</h4>
+  <p>Descargar el <a href="https://www.python.org/ftp/python/3.11.5/python-3.11.5-macos11.pkg">asistente oficial distribuído por Python.org </a> y seguir la guía de instalación.
+  </p>
+  <h4> Instalación con xCode.</h4>
+  <h6>1. Installar xCode</h6>
+  <p> Abrir la <code>Terminal</code> y correr el comando</p>
+  <code>$ xcode-select --install</code>
+  <h6>2. Instalar Python</h6>
+  <p> En la misma <code>Terminal</code> correr el comando</p>
+  <code>$ python --version</code>
+  </p>
+</div>
+
+
+<h2 id="editor-o-ide-el-lienzo-">Editor o IDE. <em>El Lienzo</em></h2>
+<div style="text-align: justify">
+En verdad, se puede <em>escribir</em> el código de un programa en cualquier soporte de texto, que, con la codificación correcta permita al ensamblador ensamblar, al compilador compilar o al interprete interpretar, según el lenguaje que sé esté empleando. En el caso de python, cualquier editor de texto que soporte ASCII o UTF-X sirve, siempre que guardemos el archivo con la extensión <i>.py</i>, el interprete lo reconocerá. Por lo que tranquilamente puede usarse notepad, TextEdit o cualquier editor sencillo.
+</div><br>
+<div style="text-align: justify">
+Sin embargo, existe una extensa oferta de editores de texto y <i>entornos de desarrollo integrados</i> que ofrecen comodidades que van desde la coloración por sintaxis, hasta el análisis estático del código, sistemas de manejo de directorios y archivos, &amp;c.
+</div><br>
+
+<div style="text-align: justify">
+Para seguir esta guía se recomienda utilizar el editor <a href="https://vscodium.com/"><code>VSCodium</code></a> Esta es la versión de código abierto de <a href="https://github.com/Microsoft/vscode"><code>vscode</code></a> sin toda la telemetría y la funcionalidad propietaria y oculta de Visual Studio Code.
+
+<h3>
+  Instalación
+</h3>
+
+<link rel="stylesheet" href="html/estilos.css">
+<script type = "text/javascript" src="html/pestañas.js"></script>
+<body>
+<div class="tab">
+  <button class="tablinks" onclick="abrirPestana(event, 'Windows')">Windows</button>
+  <button class="tablinks" onclick="abrirPestana(event, 'Linux')">Linux</button>
+  <button class="tablinks" onclick="abrirPestana(event, 'Mac')">MacOS</button>
+</div>
+
+<div id="Windows" class="tabcontent">
+  <h2>Windows</h3>
+  <h4> Instalación con Winget.</h4>
+  <p>
+  Abrir <code>CMD</code> y correr el comando</p>
+
+  <code>Powershell
+  &gt; winget install vscodium</code>
+</div>
+
+<div id="Linux" class="tabcontent">
+  <h2>GNU/Linux</h2>
+  <h4>Instalación con <a href="https://snapcraft.io/">Snap.</a></h4>
+  <p> Abrir la <code>Terminal</code> y correr el comando</p>
+
+  <code>Bash
+  $ snap install codium --classic</code>
+
+  <h4>Instalación con el administrador de paquetes de Linux. (Solo Debian o Ubuntu)</h4>
+  <p> Abrir la <code>Terminal</code> y correr el comando</p>
+
+  <code>Bash
+$ wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg \
+  | gpg --dearmor \
+  | sudo dd of=/usr/share/keyrings/vscodium-archive-keyring.gpg&lt;/code&gt;</code>
+
+  <p>para agregar la clave GPG del repositorio.</p>
+  <p>Agregar el repositorio:</p>
+
+  <code>Bash
+  $ echo &#39;deb [ signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg ] https://download.vscodium.com/debs vscodium main&#39; \
+  | sudo tee /etc/apt/sources.list.d/vscodium.list</code>
+
+  <p>Actualizar e installar VSCodium</p>
+
+  <code>Bash
+  $ sudo apt update &amp;&amp; sudo apt install codium</code>
+
+</div>
+
+<div id="Mac" class="tabcontent">
+  <h2>MacOS</h3>
+  <h4> Instalación con Brew.</h4>
+  <h6>1. Installar Homebrew</h6>
+  <p> Abrir la <code>Terminal</code> y correr el comando</p>
+
+  <code>Bash
+  $ /bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</code>
+
+  <h6>2. Instalar VSCodium</h6>
+  <p> En la misma <code>Terminal</code> correr el comando</p>
+  <code>brew install --cask vscodium</code>
+  </p>
+</div>
+</body>
+</html>
+</div>
+
+<h2 id="primeros-pasos">Primeros pasos</h2>
+<p>El típico tutorial o <i>&#39;crash-course&#39;</i> de Python empezaría algo así...</p>
+<blockquote>
+<p>¡Hagamos nuestro primer programa en Python!
+Este programa <em>&#39;imprime&#39;</em> las palabras &quot;Hola Mundo&quot;</p>
+<pre><code class="lang-Python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">imprimirHolaMundo</span><span class="hljs-params">()</span>:</span>
+  print(<span class="hljs-string">"¡Hola Mundo!"</span>)
+
+holaMundo()
+<span class="hljs-comment"># &gt;&gt;&gt; ¡Hola Mundo!</span>
+</code></pre>
+</blockquote>
+<p><div style="text-align: justify">
+Y probablemente utilizaría este ejemplo para desprender la explicación de que <code>imprimirHolaMundo</code> es una <i>función</i>, que estas se definen con <code>def</code>, que lo que hace es llamar a la función <i>nativa</i> (o <i>built-in</i>) <code>print</code> que <i>imprime a consola</i> el texto que se le pase como <i>parámetro</i> y, con suerte, incluiría entonces una vaga descripción del tipo <code>str</code>, y como se representa texto en Python.
+</div><br></p>
+<p><div style="text-align: justify">
+Las ventajas de una introducción de tales características son evidentes: sin necesidad de aún adentrarse demasiado en los temas, el programador puede en unas simples lineas escribir un <b><i>programa</b></i>, un programa que funciona, y que produce un <b><i>efecto</b></i> (en este caso que la consola en la que el programador ejecuta el código muestre las palabras &quot;¡Hola Mundo!&quot;). Más aún, el ejemplo deja en evidencia que el acto de programar es en sí uno muy <i>simple</i>, basta con darle a la computadora las instrucciones a ejecutar y esta las ejecuta.
+</div><br></p>
+<p><div style="text-align: justify">
+Lo que esta introducción <i>no</i> hace es ofrecer al programador ninguna noción de por qué este simple procedimiento funciona o qué es lo que la computadora debe hacer para ejecutar las directivas, ni tampoco ofrece mucha explicación sobre . Además, pone al programador en la situación de simplemente dar por sentado que <i>así</i> se programa, <i>así</i> se declara una función <i>así</i> se &#39;imprime&#39; texto, &amp;c. sin ofrecer explicación de qué es un <b>programa</b>, qué es una <b>función</b>, o para el caso, qué es <b>texto</b> (en el ámbito de una computadora) y a qué nos referimos por &#39;imprimir&#39;. El programador debe aprender <i>de memoria</i> todas estas <i>palabras mágicas</i>, cual si fueran <i>encantaciones</i> y mantener un alto grado de mistificación y desconocimiento de lo que sucede debajo de aquella <i>magia</i>.
+</div><br></p>
+<p><div style="text-align: justify">
+Pero <b>programar no es magia</b>, y es en efecto una tarea <i>simple</i> (lo cual no necesariamente implique que sea <i>fácil</i>), y la única forma de acceder a aquella <i>simplicidad</i> es comprendiendo como se instrumenta.
+</div><br></p>
+<p><div style="text-align: justify">
+Como se ha adelantado esta guía pretende ser un recorrido más integral, que abarque las nociones fundamentales de programación y ofrecer herramientas para implementarlas en Python. Sin perjuicio de aquella integralidad, pretende también ofrecer un acercamiento tan <i>amiglable</i> como lo puedan ser las otras fuentes disponibles. Por ello se mantendrá el clásico ejemplo de <i>hola mundo</i> pero deteniéndonos un poco más en la nociones fundamentales. Veamos.
+</div><br></p>
+<p><br></p>
+<p><hr></p>
+<p><div></p>
+<p><div style="text-align: right; float: right"></p>
+<p><h3><a href="./i. Introducción.html"> Introducción ----&gt; </a>
+</h3></div>
+</div>
+<br><br><br></p>
+<hr>
+
+
+
+</body>
+</html>
