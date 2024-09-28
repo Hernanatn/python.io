@@ -6,6 +6,7 @@
     <script type = "text/javascript" src="estatico/pestañas.js"></script>
   </head>
   <body>
+    <div id="contenido">
     <h2 id="instalaci-n">Instalación</h2>
     <p>El único requisito estricto para correr un script de Python es tener instalado el intérprete.</p>
 <div class="tab">
@@ -69,7 +70,7 @@ Para seguir esta guía se recomienda utilizar el editor <a href="https://vscodiu
 
 <link rel="stylesheet" href="estatico/estilos.css">
 <script type = "text/javascript" src="estatico/pestañas.js"></script>
-<body>
+
 <div class="tab">
   <button class="tablinks" onclick="abrirPestana(event, 'Windows')">Windows</button>
   <button class="tablinks" onclick="abrirPestana(event, 'Linux')">Linux</button>
@@ -130,8 +131,6 @@ $ wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub
   <code>brew install --cask vscodium</code>
   </p>
 </div>
-</body>
-</html>
 </div>
 
 <h2 id="primeros-pasos">Primeros pasos</h2>
@@ -162,16 +161,18 @@ Pero <b>programar no es magia</b>, y es en efecto una tarea <i>simple</i> (lo cu
 Como se ha adelantado esta guía pretende ser un recorrido más integral, que abarque las nociones fundamentales de programación y ofrecer herramientas para implementarlas en Python. Sin perjuicio de aquella integralidad, pretende también ofrecer un acercamiento tan <i>amiglable</i> como lo puedan ser las otras fuentes disponibles. Por ello se mantendrá el clásico ejemplo de <i>hola mundo</i> pero deteniéndonos un poco más en la nociones fundamentales. Veamos.
 </div><br></p>
 <p><br></p>
-<p><hr></p>
-<p><div></p>
-<p><div style="text-align: right; float: right"></p>
-<p><h3><a href="./i. Introducción.html"> Introducción ----&gt; </a>
-</h3></div>
 </div>
-<br><br><br></p>
-<hr>
-
-
-
+<footer id="footer" hx-oob-swap="true">
+  <div style="display:flex; text-justify: right; justify-content: space-between;">
+      <h3><a class="flecha" hx-get="./index.html" hx-target="#contenido" hx-select="#contenido" hx-swap="outerHTML"> <span class="material-symbols-outlined" style="align-self: center;">
+          west
+      </span> Índice </a>
+  </h3>
+      <h3><a class="flecha" hx-get="./i.%Introducción.html" hx-target="#contenido" hx-select="#contenido" hx-swap="outerHTML"> Introducción <span class="material-symbols-outlined" style="align-self: center;">
+          east
+      </span> </a>
+  </h3>
+</div>
+</footer>
 </body>
 </html>
