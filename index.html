@@ -1,139 +1,149 @@
 <html>
     <head>
         <link rel="stylesheet" href="https://unpkg.com/some-nice-basic-css/global.css" />
+        <link rel="stylesheet" href="estatico/estilos.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <script hx-preserve="true" src="https://unpkg.com/htmx.org@1.9.6"></script>
     </head>
     <body>
+        <div id="indice">
+            <h3>
+                Contenidos
+            </h3> 
+            <ul>
+                <li>
+                    [Primeros Pasos](/0.%20Primeros%20Pasos.md)
+                </li>
+            </ul>
+            <ol type="i">
+                <li>
+                    <h5>
+                        [Introducción](/i.%20Introduccion.md)
+                    </h5>
+                    <ol type="a">
+                        <li>
+                            Programas.
+                        </li>
+                        <li>
+                            [Esquema Compilador - Intérprete](/i.a%20Esquema%20Compilador%20-%20Interprete.png)
+                        </li>
+                        <li>
+                            [Palabras Claves, Tipos](/i.b%20Palabras%20Claves,%20Tipos.md)
+                        </li>
+                        <li>
+                            Tamaños y Memoria:
+                            <ol>
+                                <li>
+                                    [Tamaño de los tipos Principales]()
+                                </li>
+                                <li>
+                                    [`(.py)` Imprimir Tamaños]()        
+                                </li>
+                            </ol>
+                        </li>
+                    </ol>
+                </li>   
+                <li>    
+                    [Básicas de Python]()
+                    <ol type="a">
+                        <li>
+                                [Los 3 mosqueteros: `str`, `int` y `list`]()
+                        </li>
+                        <li>
+                                [Prácticas "Pythonistas"]()
+                        </li>
+                        <li>
+                            Espacios de nombres:
+                            <ul>
+                                <li>
+                                - <i>Parte 1.</i>    [Sistema de importación]()
+                                </li>
+                                <li>
+                                - <i>Parte 2.</i>    [Paquetes - PyPi y Pip]()  
+                                </li>
+                            </ul>
+                        </li>
+                    </ol>
+                </li>
+                <li>
+                    <a href="/iii.%20Sintaxis.md">Sintaxis</a>
+                    <ol type="a">
+                        <li>
+                            Especificación del Lenguaje
+                        </li>
+                        <li>
+                            [`(.py)` Sintagmas Principales](/iii.a%20Sintagmas%20Principales.py)
+                        </li>
+                    </ol>
+                </li>
+                <li>
+                    [Funciones](/iv.%20Funciones.md)
+                </li>
+                <li>        
+                    Objetos:
+                    <ul>
+                        <li>
+                            - <i>Parte 1.</i> [Estructura General]()
+                        </li>
+                        <li>
+                            - <i>Parte 2.</i> [Métodos "Mágicos" (__dunder__)]()
+                        </li>
+                        <li>
+                            - <i>Parte 3.</i> [Metaclases y Genéricos]() 
+                        </li>
+                    </ul>
+                    <ol type="a">
+                        <li>
+                            <a href="/vi.%20Esquema%20de%20Objetos%20en%20Memoria.png"> Esquema de Objetos en Memoria</a>
+                        </li>
+                        <li>
+                            Ejemplos:
+                            <ol>
+                                <li>
+                                    <a href=""><code>(.py)</code>Lista personalizada</a>
+                                </li>
+                                <li>
+                                    <a href=""><code>(.py)</code>Metaclase <i><b>Singleton</b></i></a>
+                                </li>
+                                <li>
+                                    <a href=""><code>(.py)</code>Creación dinámica de Clases con <code>type()</code></a> 
+                                </li>
+                            </ol>
+                        </li>
+                    </ol>
+                </li>
+            </ol>
+            <br>
 
-<h1>Qué es Python</h1>
-<div style="text-align: justify">Python es un <a href="https://es.wikipedia.org/wiki/Lenguaje_de_alto_nivel">lenguaje de programación de alto nivel</a>, orientado originalmente a la ejecución de secuencias de comandos. Es un lenguaje <a href="https://es.wikipedia.org/wiki/Int%C3%A9rprete_(inform%C3%A1tica)">interpretado</a> y con una sintaxis relativamente reducida y <a href="https://es.wikipedia.org/wiki/Tipado_din%C3%A1mico">tipado dinámico</a>. Tiene soporte para múltiples paradigmas de programación, incluyendo una extensa lista de facilidades dedicadas a la <a href ="https://es.wikipedia.org/wiki/Programaci%C3%B3n_orientada_a_objetos">Programación Orientada a Objetos</a> y algunas herramientas del <a href="https://es.wikipedia.org/wiki/Programaci%C3%B3n_funcional">paradigma Funcional</a>. Cuenta con un intérprete, escrito en C, el cual se encarga de todas las tareas de bajo nivel, entre ellas: la compilación del código funte a <a href="https://es.wikipedia.org/wiki/Bytecode">código de <i>bytes</i></a> y su subsecuente ejecución, el manejo de memoria, la implementación de los <a href="https://es.wikipedia.org/wiki/Tipo_de_dato_abstracto">Tipos de Dato Abstractos</a> y algoritmos principales, la creación y destrucción de objetos (<a href="https://es.wikipedia.org/wiki/Recolector_de_basura">RB</a>), &c.</div><br>
+        </div>
+        <div id="contenido">
 
-<div style="text-align: justify">Todas estas características, junto con su reducido conjunto de palabras clave, lo posicionan como un lenguaje <i>amigable</i> para un primer acercamiento y ofrecen facilidades y abstracciones que permiten un despliegue rápido y efectivo, aún si a veces incomprendido, de soluciones concretas (programas) a problemas planteados (requisitos). Sin embargo, esa percibida facilidad puede tornarse un arma de doble filo: el programador que no entiende <b><i>qué</b></i> es lo que su programa hace está destinado al fracaso. O peor, a gastar horas, semanas, meses de su vida en el engorroso <i>debugeo</i> de código que, de haber tenido una más clara noción de cómo funcionaba, no le hubiera representado mayor dificultad.</div><br>
+        <h1>Qué es Python</h1>
+        <div style="text-align: justify">Python es un <a href="https://es.wikipedia.org/wiki/Lenguaje_de_alto_nivel">lenguaje de programación de alto nivel</a>, orientado originalmente a la ejecución de secuencias de comandos. Es un lenguaje <a href="https://es.wikipedia.org/wiki/Int%C3%A9rprete_(inform%C3%A1tica)">interpretado</a> y con una sintaxis relativamente reducida y <a href="https://es.wikipedia.org/wiki/Tipado_din%C3%A1mico">tipado dinámico</a>. Tiene soporte para múltiples paradigmas de programación, incluyendo una extensa lista de facilidades dedicadas a la <a href ="https://es.wikipedia.org/wiki/Programaci%C3%B3n_orientada_a_objetos">Programación Orientada a Objetos</a> y algunas herramientas del <a href="https://es.wikipedia.org/wiki/Programaci%C3%B3n_funcional">paradigma Funcional</a>. Cuenta con un intérprete, escrito en C, el cual se encarga de todas las tareas de bajo nivel, entre ellas: la compilación del código funte a <a href="https://es.wikipedia.org/wiki/Bytecode">código de <i>bytes</i></a> y su subsecuente ejecución, el manejo de memoria, la implementación de los <a href="https://es.wikipedia.org/wiki/Tipo_de_dato_abstracto">Tipos de Dato Abstractos</a> y algoritmos principales, la creación y destrucción de objetos (<a href="https://es.wikipedia.org/wiki/Recolector_de_basura">RB</a>), &c.</div><br>
 
-<blockquote>
-    <h3>El camino al infierno está plagado de fáciles abstracciones.</h3>
-    <div style="text-align: right"><i> San Francisco de Python. </i><b>SXIII</b></div>
-</blockquote>    
+        <div style="text-align: justify">Todas estas características, junto con su reducido conjunto de palabras clave, lo posicionan como un lenguaje <i>amigable</i> para un primer acercamiento y ofrecen facilidades y abstracciones que permiten un despliegue rápido y efectivo, aún si a veces incomprendido, de soluciones concretas (programas) a problemas planteados (requisitos). Sin embargo, esa percibida facilidad puede tornarse un arma de doble filo: el programador que no entiende <b><i>qué</b></i> es lo que su programa hace está destinado al fracaso. O peor, a gastar horas, semanas, meses de su vida en el engorroso <i>debugeo</i> de código que, de haber tenido una más clara noción de cómo funcionaba, no le hubiera representado mayor dificultad.</div><br>
+
+        <blockquote>
+            <h3>El camino al infierno está plagado de fáciles abstracciones.</h3>
+            <div style="text-align: right"><i> San Francisco de Python. </i><b>SXIII</b></div>
+        </blockquote>    
 
 
-<h2> Esta guía</h2>
-<div style="text-align: justify">
-Esta guía pretende ofrecer un recorrido no menos <i>amigable</i> que el habitual, pero sí más integral. Partidendo desde lo pequeño hasta lo grande y ofreciendo al lector las herramientas necesarias para comprender verdaderamente qué sucede en su computadora cuando el intérprete de Python hace <i>su magia</i> y como valerse de ellas para escribir <a href="https://es.wikipedia.org/wiki/Correctitud">código correcto</a>, legible, mantenible y, sobre todo, disfrutable. 
-</div><br>
+        <h2> Esta guía</h2>
+        <div style="text-align: justify">
+        Esta guía pretende ofrecer un recorrido no menos <i>amigable</i> que el habitual, pero sí más integral. Partidendo desde lo pequeño hasta lo grande y ofreciendo al lector las herramientas necesarias para comprender verdaderamente qué sucede en su computadora cuando el intérprete de Python hace <i>su magia</i> y como valerse de ellas para escribir <a href="https://es.wikipedia.org/wiki/Correctitud">código correcto</a>, legible, mantenible y, sobre todo, disfrutable. 
+        </div><br>
 
-<div style="text-align: justify">
-a
-</div>
-
-<h3>
-    Contenidos
-</h3> 
-<ul>
-    <li>
-        [Primeros Pasos](/0.%20Primeros%20Pasos.md)
-    </li>
-</ul>
-<ol type="i">
-    <li>
-        <h5>
-            [Introducción](/i.%20Introduccion.md)
-        </h5>
-        <ol type="a">
-            <li>
-                Programas.
-            </li>
-            <li>
-                [Esquema Compilador - Intérprete](/i.a%20Esquema%20Compilador%20-%20Interprete.png)
-            </li>
-            <li>
-                [Palabras Claves, Tipos](/i.b%20Palabras%20Claves,%20Tipos.md)
-            </li>
-            <li>
-                Tamaños y Memoria:
-                <ol>
-                    <li>
-                        [Tamaño de los tipos Principales]()
-                    </li>
-                    <li>
-                        [`(.py)` Imprimir Tamaños]()        
-                    </li>
-                </ol>
-            </li>
-        </ol>
-    </li>   
-    <li>    
-        [Básicas de Python]()
-        <ol type="a">
-            <li>
-                    [Los 3 mosqueteros: `str`, `int` y `list`]()
-            </li>
-            <li>
-                    [Prácticas "Pythonistas"]()
-            </li>
-            <li>
-                Espacios de nombres:
-                <ul>
-                    <li>
-                    - <i>Parte 1.</i>    [Sistema de importación]()
-                    </li>
-                    <li>
-                    - <i>Parte 2.</i>    [Paquetes - PyPi y Pip]()  
-                    </li>
-                </ul>
-            </li>
-        </ol>
-    </li>
-    <li>
-        <a href="/iii.%20Sintaxis.md">Sintaxis</a>
-        <ol type="a">
-            <li>
-                Especificación del Lenguaje
-            </li>
-            <li>
-                [`(.py)` Sintagmas Principales](/iii.a%20Sintagmas%20Principales.py)
-            </li>
-        </ol>
-    </li>
-    <li>
-        [Funciones](/iv.%20Funciones.md)
-    </li>
-    <li>        
-        Objetos:
-        <ul>
-            <li>
-                - <i>Parte 1.</i> [Estructura General]()
-            </li>
-            <li>
-                - <i>Parte 2.</i> [Métodos "Mágicos" (__dunder__)]()
-            </li>
-            <li>
-                - <i>Parte 3.</i> [Metaclases y Genéricos]() 
-            </li>
-        </ul>
-        <ol type="a">
-            <li>
-                <a href="/vi.%20Esquema%20de%20Objetos%20en%20Memoria.png"> Esquema de Objetos en Memoria</a>
-            </li>
-            <li>
-                Ejemplos:
-                <ol>
-                    <li>
-                        <a href=""><code>(.py)</code>Lista personalizada</a>
-                    </li>
-                    <li>
-                        <a href=""><code>(.py)</code>Metaclase <i><b>Singleton</b></i></a>
-                    </li>
-                    <li>
-                        <a href=""><code>(.py)</code>Creación dinámica de Clases con <code>type()</code></a> 
-                    </li>
-                </ol>
-            </li>
-        </ol>
-    </li>
-</ol>
-<br>
-<hr>
-<div style="text-align: right">
-<h3><a href="./0. Primeros Pasos.md"> Primeros Pasos ----> </a>
-</h3></div><hr>
-</body>
+        <div style="text-align: justify">
+        a
+        </div>
+    </div>
+    <footer>
+        <div style="display:flex; text-justify: right; justify-content: right;">
+            <h3><a class="flecha" hx-get="./0.%20Primeros%20Pasos.html" hx-target="#contenido" hx-select="#contenido" hx-swap="outerHTML"> Primeros Pasos <span class="material-symbols-outlined" style="align-self: center;">
+                east
+            </span> </a>
+        </h3></div>
+    </footer>
+    </body>
 </html>
