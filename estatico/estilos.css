@@ -1,24 +1,37 @@
 
 :root{
   --principal: #e1e1e1;
+  --gris: #8e8e8e;
+  --acento: #7fd2bd;
   --fondo: #202020
 
 }
-html,*{
+*{
+  transition: all 300ms ease-in-out;
+}
+
+*:not(html,body,#contenedor-pagina){scrollbar-width: none;}
+*:not(html,body,#contenedor-pagina)::-webkit-scrollbar{display: none;}
+html,body{
   background-color: var(--fondo)!important;
-  color:var(--principal)!important;
+}
+html,*{
+  background-color: var(--fondo);
+  color:var(--principal);
   max-width: 100vw;
   overflow-x: hidden;
   overflow-x: clip;
 }
-
+*{
+  background-color: transparent;
+}
 
 body{
   padding: 0;
   display: grid;
   grid:
   "indice contenido" 1fr
-  "footer footer" min-content
+  "footer footer" 10vh
   / 20vw 1fr
   ;
   gap: 2.5vw;
@@ -31,7 +44,13 @@ footer{
   padding: 0vh 2.5vw;
 }
 #indice{
+  position: -webkit-sticky;
+  position: fixed;
+  top: 0;
   grid-area: indice;
+  height: 89vh;
+  overflow-y: scroll;
+  width: 15vw;
   padding: 0vh;
   padding-left: 5vw;
 }
@@ -96,4 +115,20 @@ footer{
 ol,ul{
   padding-left: .5vw;
   font-size: small;
+}
+
+*[hx-get],*[hx-post]{
+  cursor: pointer;
+}
+
+a[hx-get]:not(.flecha):hover{
+  text-decoration: underline;
+  color: var(--acento)!important;
+}
+a[hx-get].flecha:hover{
+  & *{
+    color: var(--fondo)!important;
+  }
+  background-color: var(--acento)!important;
+  color: var(--fondo)!important;
 }

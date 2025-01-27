@@ -67,9 +67,9 @@ Dentro de la función se puede acceder a las colecciones por su nombre. Se estil
 ```Python
 def muchosArgumentos(argPrimero : int, argSegundo : float, *posicionales, **nominales):
     print(f'{argPrimero} es el primero. {argSegundo} es el segundo. ')
-    for argPosicional en posicionales:
+    for argPosicional in posicionales:
         print(f'{argPosicional}')
-    for nombre,argNominal en nominales:
+    for nombre,argNominal in nominales:
         print(f'{nombre} es la llave. {argNominal} es el argumento')
 ```
 
@@ -156,7 +156,7 @@ def listarNotas( listadorMedio : Listador, categorizadorNotas : Categorizador) -
 <div style="text-align : justify">El ejemplo anterior presenta 3 funciones las cuales se componen para realizar la funcionalidad deseada - i.e. producir una Lista de Notas.  
 Como vemos, la función <code>categorizadorNotas</code> es una función de primer orden, una función **concreta** la cual toma ciertos parámetros que no son funciones y devuelve una tupla.<br><br>
 
-Por su parte, `listadorPerfil` es una función de otden ligeramente superior, es parcialmente concreta entanto tiene estado interno, detalles de implementación propios y produce efectos secundarios. Pero parte de su funcionalidad (la de producir la tupla de categorías), está delegada en *cualquier* Categorizador que le sea provisto como parámetro.<br>
+Por su parte, `listadorPerfil` es una función de orden ligeramente superior, es parcialmente concreta entanto tiene estado interno, detalles de implementación propios y produce efectos secundarios. Pero parte de su funcionalidad (la de producir la tupla de categorías), está delegada en *cualquier* Categorizador que le sea provisto como parámetro.<br>
 
 Finalmente, `listarNotas` no es más que una interfaz. Es una función de orden superior que llama a *cualquier* Listador que produzca una ListaNotas y le provee la correspondiente función categorizadora.</div>
 
@@ -215,11 +215,12 @@ print(next(rango))
 ```
 ### @Decoradores 
 Los decoradores son *`azucar sintáctico`* para funciones de orden superior que toman como parámetro una función o clase. Son funciones "envolventes".  
-Al utilizar un decorador sobre la definición de una función, el programador le indica al compilador que cada vez que esa función sea llamada, debe ser llamada a travez del evolvente determinado por el decorador.
+Al utilizar un decorador sobre la definición de una función, el programador le indica al compilador/intérprete que cada vez que esa función sea llamada, debe ser llamada a travez del evolvente determinado por el decorador.
 
 El sintagma
 ```Python
 from Typing import Callable
+
 
 def repetir5Veces (unaFuncion : Callable) -> Callable:
     def envolvente(*posicionales)
