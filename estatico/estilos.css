@@ -3,7 +3,8 @@
   --principal: #e1e1e1;
   --gris: #8e8e8e;
   --acento: #7fd2bd;
-  --fondo: #202020
+  --fondo: #202020;
+  --negro: #090909
 
 }
 *{
@@ -143,13 +144,13 @@ code{
   background-color: var(--acento);
 }
 
-div:has(pre>code){
+div:has(>pre>code){
   width: 100%;
   max-width: 100vw;
   height: max-content;
   padding: .1em .5em;
   border-radius: .3em;
-background-color:var(--gris);
+background-color:var(--negro);
 }
 div:has(pre>code)>pre>code{
   background-color: transparent;
