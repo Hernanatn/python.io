@@ -142,6 +142,7 @@ code{
   padding: .3em;
   border-radius: .3em;
   background-color: var(--acento);
+  color: var(--fondo);
 }
 
 div:has(>pre>code){
