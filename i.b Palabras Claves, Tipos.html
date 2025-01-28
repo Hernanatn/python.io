@@ -1,0 +1,145 @@
+
+
+<div id="contenido">
+<h1> Palabras Claves y Tipos </h1>
+
+<details><summary><b>Tipos</b></summary>
+Todos los tipos en python son objetos y heredan de la clase <code class="language-py">object</code>
+
+
+
+<div style="display: flex; flex-direction: row; gap: 1em;">
+<div>
+    <b> Numéricos</b>
+<ul>
+    <li><code class="language-py">int</code></li>
+    <li><code class="language-py">bool</code></li>
+    <li><code class="language-py">float</code></li>
+    <li><code class="language-py">complex</code></li>
+</ul>
+</div>
+
+<div>
+    <b> Secuencias Mutables</b>
+    <ul>
+        <li><code class="language-py">list</code></li>
+        <li><code class="language-py">bytearray</code></li>
+    </ul>
+</div>
+<div>
+<b> Secuencias Inmutables</b>
+<ul>
+<li><code class="language-py">str</code></li>
+<li><code class="language-py">tuple</code></li>
+<li><code class="language-py">range</code></li>
+<li><code class="language-py">bytes</code></li>
+</ul>
+</div>
+<div>
+<b> Conjuntos</b>
+<ul>
+<li><code class="language-py">set</code></li>
+<li><code class="language-py">frozenset</code></li>
+</ul>
+</div>
+<div>
+<b> Mapeo</b>
+<ul>
+<li><code class="language-py">dict</code></li>
+</ul>
+</div>
+</div>
+</details>
+
+<hr>
+
+<h2>Palabras claves</h2>
+
+<h3>Condicionales y operadores lógicos:</h3>
+<ul>
+    
+    <li> <code class="language-py">if</code>; <code class="language-py">elif</code>; <code class="language-py">else</code>    <i>Condicionales básicos</i><br></li>
+    <li> <code class="language-py">and</code>; <code class="language-py">or</code>; <code class="language-py">not</code>      <i>Operadores Lógicos</i><br></li>
+    <li> <code class="language-py">True</code> y <code class="language-py">False</code>        <i>Booleanos</i><br></li>
+    <li> <code class="language-py">assert</code>	              <i>Condicional que equivale a <code class="language-py">if not [condicion]: raise AssertionError</code></i><br></li>
+    <li> <code class="language-py">in</code>	                  <i>Condicional que evalúa si un valor está presente en alguna <code class="language-py">colección</code></i><br></li>
+    <li> <code class="language-py">is</code>                    <i>Condicional que evalua si dos variables <b>apuntan</b> al mismo objeto en memoria </i><br></li>
+</ul>
+    <br>
+
+<h3>Objetos</h3>
++<code class="language-py">class</code> 	<i>Define una Clase</i><br>
++<code class="language-py">del</code>   	<i>Elimina una instancia de un objeto</i><br>
+<br>
+
+<h3>Nulos</h3>
++<code class="language-py">None</code>	<i>Representa un valor nulo, es de tipo <code class="language-py">NoneType</code></i><br>
++<code class="language-py">pass</code>	<i>Declaración nula en en el sentido de que no hace literalmente nada</i><br>
+<br>
+
+<h3>Valores, variables y <i>scope<i></h3>
++<code class="language-py">with</code>     <b>Manejador de Contexto</b> <i>utilizado para determinar un scope basado en <b>estado</b> para un bloque</i><br> 
++<code class="language-py">global</code>	<i>Prefixo que declara una variable de scope global</i><br>
++<code class="language-py">nonlocal</code>	<i>Prefixo que declara una variable como no restringida al scope local</i><br>
+<br>
+
+<h3>Funciones</h3>
++<code class="language-py">def</code>     <i>Define una función</i><br>
++<code class="language-py">lambda</code>  <i>Define una función anónima</i><br>
++<code class="language-py">yield</code>   <i>Finaliza la función y retorna un <b>generador</b></i><br>
++<code class="language-py">return</code>  <i>Finaliza la función y retorna un <b>valor</b></i><br>
+<br>
+
+<h3>Ciclos</h3>
++<code class="language-py">while</code>     <i>Inicia un ciclo <code class="language-py">while</code></i><br>
++<code class="language-py">for</code>       <i>Inicia un ciclo <code class="language-py">for</code></i><br>
++<code class="language-py">break</code>     <i>Quiebra el ciclo en el que está</i><br>
++<code class="language-py">continue</code>	 <i>Continúa con la siguiente iteración del ciclo en el que está</i><br>
+
+<h3>Importación</h3>
++<code class="language-py">from</code>      <i>Importa [algo] desde un módulo</i><br>
++<code class="language-py">import</code>	 <i>Importa un módulo</i><br>
+
+<h3>Manejo de Errores</h3>
++<code class="language-py">raise</code>     <i>Levanta una <b>excepción</b></i><br>
++<code class="language-py">try</code>       <i>Inicio del bloque <code class="language-py">try...except</code> determina el bloque que se <b>intentará</b> ejecutar</i><br>	
++<code class="language-py">except</code>	 <i>Porción del bloque <code class="language-py">try...except</code> determina el bloque que se ejecutará en caso de que una excepción del tipo esperado sea levantada</i><br>
++<code class="language-py">finally</code>	 <i>Final (opcional) del bloque <code class="language-py">try...except</code> determina el bloque que se ejecutará luego, indistintamente de si hubo o no excepciones</i><br>
+
+<hr>
+
+<h2>Veracidad de los valores</h2>
+Todos los tipos "primitivos" de Python pueden ser implícitamente <i>"casteados"</i> a un <code class="language-py">bool</code>:
+
+<h3> Valores <i>veraces<i></h3>
+Por defecto todos los objetos <b>no-vacíos</b> en Python son <i>veraces</i> en el sentido de que pueden ser implícitamente <i>"casteados"</i> a <code class="language-py">True</code> en evaluaciones del estilo:
+
+<div><pre><code class="language-py">
+x : int = 5
+
+if x: 
+    print(x)
+
+>>> 5 
+</code></pre></div>
+
+<h3> Valores <i>falaces<i></h3>
+Alternativamente, los valores <b>vacíos</b> son, por defecto, <i>falaces</i>. Pueden ser <i>"coercionados"</i> implícitamente a <code class="language-py">false</code>
+
+
+<table>
+    <thead>
+            <th>Colecciones</th>                <th>Números</th>        <th>Constantes</th>
+    </thead>
+    <tbody>
+        <tr><td> Listas vacías <code class="language-py">[]</code>        </td><td> <code class="language-py">int 0</code>       </td><td> <code class="language-py">None</code>     </td></tr>
+        <tr><td> Tuplas vacías <code class="language-py">()</code>        </td><td> <code class="language-py">float 0</code>     </td><td> <code class="language-py">False</code>    </td></tr>
+        <tr><td> Diccionarios vacíos <code class="language-py">{}</code>  </td><td> <code class="language-py">complex 0</code>   </td><td> -          </td></tr>
+        <tr><td> Conjuntos vacíos <code class="language-py">set()</code>  </td><td> -             </td><td> -          </td></tr>
+        <tr><td> Cadenas vacías <code class="language-py">""</code>       </td><td> -             </td><td> -          </td></tr>
+        <tr><td> Rangos vacíos <code class="language-py">Range(0)</code>  </td><td> -             </td><td> -          </td></tr>
+    </tbody>
+</table>
+
+<script>hljs.highlightAll();</script>
+</div>
