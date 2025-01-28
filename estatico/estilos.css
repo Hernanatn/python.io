@@ -153,6 +153,6 @@ div:has(>pre>code){
   border-radius: .3em;
 background-color:var(--negro);
 }
-div:has(>pre>code)>pre>code{
-  background-color: transparent;
+div:has(>pre>code)>pre,div:has(>pre>code)>pre>code{
+  background-color: transparent!important;
 }
