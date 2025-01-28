@@ -154,5 +154,7 @@ div:has(>pre>code){
 background-color:var(--negro);
 }
 div:has(>pre>code)>pre,div:has(>pre>code)>pre>code{
+  padding: 0!important;
+  margin: 0!important;
   background-color: transparent!important;
 }
