@@ -7,12 +7,12 @@
   <p>Las clases se declaran con la palabra clave <code>class</code>, pueden poseer atributos y las funciones internas -métodos- siempre llevan como primer argumento una referencia a la instancia, <code>self</code>.</p>
 
   <h2>Declaración de Clases</h2>
-  <pre><code class="language-python">class MiClase():
+  <div><pre><code class="language-python">class MiClase():
     def __init__(self) -> None:
         self.atributo = ...
         ...
     def metodo(self):
-        ...</code></pre>
+        ...</code></pre></div>
 
   <h2>Atributos</h2>
 
@@ -20,23 +20,23 @@
   <p>Las clases en Python pueden tener tanto atributos vinculados a una instancia particular como a la clase en sí.<br>
   Los atributos de cada instancia se declaran dentro de un método y llevan una referencia a <code>self</code>, mientras que los atributos de clase se declaran por fuera de los métodos.</p>
 
-  <pre><code class="language-python">class MiCLase():
+  <div><pre><code class="language-python">class MiCLase():
     atributoDeClase : int = 1
 
     def __init__(self, attr : str) -> None:
         self.atributoDeInstancia = attr
-        ...</code></pre>
+        ...</code></pre></div>
 
   <p>Tanto la clase en sí como todos los objetos de tipo <strong>MiClase</strong> poseen el atributo <strong>atributoDeClase</strong>, cuyo valor es 1. Mientras que el valor del <strong>atributoDeInstancia</strong> dependerá de cada instancia concreta.</p>
 
   <p>Los atributos de clase resultan útiles, por ejemplo, cuando implementando un patrón <em>"Singleton"</em></p>
-  <pre><code class="language-python">class MiSingleton():
+  <div><pre><code class="language-python">class MiSingleton():
     _unicaInstancia = None
 
     def __new__(cls,*posicionales,**nominales):
         if cls._unicaInstancia is None:
             cls._unicaInstancia = super().__new__(cls,*posicionales,**nominales)
-        return cls._unicaInstancia</code></pre>
+        return cls._unicaInstancia</code></pre></div>
 
   <p>En el ejemplo anterior, el <strong>constructor</strong> de la instancia primero revisa si la variables _unicaInstancia de la Clase es None, y solo construye una nueva en ese caso. Si ya existe una _unicaInstancia creada previamente, devuelve esa en lugar de instancias una nueva, garantizando el <em>"Singleton"</em>.</p>
 
@@ -45,7 +45,7 @@
   Existe, sin embargo, una comodida del compilador que permite simular la funcionalidad de protección de variables.<br>
   Esta funcionalidad se llama <em>"name mangling"</em> y se utiliza prefijando la variable o método con dos __ guiones bajos.</p>
 
-  <pre><code class="language-python">class MiClasePublica():
+  <div><pre><code class="language-python">class MiClasePublica():
 
     def __init__(self, attr : str) -> None:
         self.nombre = attr
@@ -66,17 +66,17 @@ class MiClasePrivada():
 instancia : MiClasePrivada = MiClasePrivada("pablo")
 print(instancia.__nombre)
 
-# >>> AttributeError object of type 'MiClasePrivada' does not have a '__nombre' attribute.</code></pre>
+# >>> AttributeError object of type 'MiClasePrivada' does not have a '__nombre' attribute.</code></pre></div>
 
   <p>Pareciera ser que ese <em>name mangling</em> efectivamente "privatiza" el atributo nombre y lo torna inaccesible por fuera de la clase. Pero no, lo único que hace es, en <em>tiempo de compilación</em>, cambiar el nombre de la variable, agregando como prejifo el nombre de la clase. Y podemos seguir accediendo a la variable siempre que lo hagamos con su nombre <em>mangleado</em>.</p>
 
-  <pre><code class="language-python">class MiClasePrivada():
+  <div><pre><code class="language-python">class MiClasePrivada():
     ...
 
 instancia : MiClasePrivada = MiClasePrivada("pablo")
 print(instancia._MiClasePrivada__nombre)
 
-# >>> pablo</code></pre>
+# >>> pablo</code></pre></div>
 
   <h3>Atributos y objetos en memoria <code>__slots__</code> vs <code>__dict__</code></h3>
   <p>Por defecto, todos los objetos de Python implementan el atributo <code>__dict__</code> que es un diccionario de todos los atributos y métodos "públicos" de la instancia.<br>
@@ -88,7 +88,7 @@ print(instancia._MiClasePrivada__nombre)
     <li>La estructura intera del objeto, i.e. los atributos que <em>puede</em> tener, pueden variar luego de su inicialización.</li>
   </ul>
 
-  <pre><code class="language-python">class MiClaseDict():    
+  <div><pre><code class="language-python">class MiClaseDict():    
 
     def __init__(self, nombre : str, edad : int):
         self.nombre = nombre
@@ -101,13 +101,13 @@ print(dicto.__dict__)
 
 dicto.nuevoAtributo = "nuevo atributo" #es perfectamente legal agregar atributos en tiempo de ejecución
 print(dicto.__dict__)
-# >>> {'nombre': 'juan', 'edad': 5, 'nuevoAtributo': 'nuevoAtributo'}</code></pre>
+# >>> {'nombre': 'juan', 'edad': 5, 'nuevoAtributo': 'nuevoAtributo'}</code></pre></div>
 
   <p>La implementación de <code>__dict__</code> puede suponer penalidades de rendimiento, como así permitir anti-patrones como la modificación de las clases en curso de ejecución. Existe, sin embargo, una alternativa.</p>
 
   <p>Python permite declarar el atributo de clase <code>__slots__</code>. Este reemplaza al diccionario por una tupla de <code>str</code> la cual contiene los nombres de los atributos de la clase. La tupla es una estructa inmutable, y el alocador de memoria de Python aprovecha esto cambiando la estructura del objeto en memoria, guardando en el <code>stack</code> un puntero por cada atributo (los cuales viven en el <code>heap</code>).</p>
 
-  <pre><code class="language-python">class MiClaseSlots():
+  <div><pre><code class="language-python">class MiClaseSlots():
     __slots__ = ("nombre","edad") # 
 
     def __init__(self, nombre : str, edad : int):
@@ -121,7 +121,7 @@ print(sloto.__slots__)
 
 print(sloto) 
 sloto.nuevoAtributo = "nuevo atributo" #es ilegal modificar una tupla y por lo tanto no se pueden agregar nuevos atributos
-# >>> AttributeError: 'MiClaseSlots' object has no attribute 'nuevoAtributo'</code></pre>
+# >>> AttributeError: 'MiClaseSlots' object has no attribute 'nuevoAtributo'</code></pre></div>
 
   <blockquote>
     <p><em>Nota: una tupla en python pesa ~40bytes, mientras que un diccionario pesa ~232bytes. Lo que representa una diferencia espacial de 580%.</em><br>
@@ -131,15 +131,15 @@ sloto.nuevoAtributo = "nuevo atributo" #es ilegal modificar una tupla y por lo t
   <h2>Métodos</h2>
   <h3>Métodos de Instancia</h3>
   <p>Los métodos de instancia son las funciones vinculadas al objeto que toman como primer argumento una referencia a la instancia, <code>self</code>.</p>
-  <pre><code class="language-python">class Numero():
+  <div><pre><code class="language-python">class Numero():
     def sumar(self,otroNumero : int):
-        return self += otro</code></pre>
+        return self += otro</code></pre></div>
 
   <h3>Métodos de Clase</h3>
   <p>Además de métodos de instancia, las clases pueden tener métodos en sí mismas. Estos métodos no dependen de ninguna instancias en particular ni pueden acceder a otros atributos que no sean los de la clase.<br>
   Los métodos de clase se indican con el decorador <code>@classmethod</code> y toman como primer argumento una referencia a la clase, <code>cls</code>.</p>
 
-  <pre><code class="language-python">class strFormateada(str):
+  <div><pre><code class="language-python">class strFormateada(str):
     def __init__(self, cadena : str, formato : str):
         self.data = cadena.format(formato)
         ...
@@ -150,7 +150,7 @@ sloto.nuevoAtributo = "nuevo atributo" #es ilegal modificar una tupla y por lo t
             cadena, formato = csv.read().split(",")
             return strFormateada(cadena,formato)
 
-cadenaNueva = strFormateada.crearDesdeCSV("ruta/al/archivo.csv")</code></pre>
+cadenaNueva = strFormateada.crearDesdeCSV("ruta/al/archivo.csv")</code></pre></div>
 
   <h2>Métodos 'Mágicos' (<em>__dunder__</em>)</h2>
   <h3>Construcción e Instanciación: __init()__ vs __new()__</h3>
@@ -164,7 +164,7 @@ cadenaNueva = strFormateada.crearDesdeCSV("ruta/al/archivo.csv")</code></pre>
     <p>Si intentáramos crear una tupla de <code>str</code> cuyos miembro fueran todos mayúsculos indistintamente de si fueron cargados en mayúscula o en mínuscula utilizando <code>__init__</code>, recibiríamos un error</p>
   </div><br>
 
-  <pre><code class="language-python">from typing import Iterable
+  <div><pre><code class="language-python">from typing import Iterable
 
 class TuplaMayus(tuple):
     def __init__(self, iterable : Iterable) -> None:
@@ -172,18 +172,18 @@ class TuplaMayus(tuple):
             self[indice] = miembro.upper()
 ...
 
-#>>> TypeError 'TuplaMayus' object does not support item assignment</code></pre>
+#>>> TypeError 'TuplaMayus' object does not support item assignment</code></pre></div>
 
   <div style="text-align: justify">
     <p>Esto sucede por que la tupla, al ser una colección inmutable no permite modificar sus elementos una vez que fue creada. En su lugar se puede usar <code>__new__</code>:</p>
   </div>
 
-  <pre><code class="language-python">from typing import Iterable
+  <div><pre><code class="language-python">from typing import Iterable
 
 class TuplaMayus(tuple):
     def __new__(cls, iterable : Iterable) -> TuplaMayus:
         iterableMayus : Iterable = (e.upper() for e in iterable)
-        return super().__new__(cls,iterableMayus)</code></pre>
+        return super().__new__(cls,iterableMayus)</code></pre></div>
 
   <blockquote>
     <p><em>Nota: <code>__new__</code> siempre debe retornar una instancia de la clase, es el constructor</em></p>
@@ -195,7 +195,7 @@ class TuplaMayus(tuple):
   </div><br>
   <p>Python "vainilla" no permite la sobrecarga de métodos y funciones, sin embargo, la biblioteca estándar "overloading" incluye el decorador con aquella funcionalidad.</p>
 
-  <pre><code class="language-python">from overloading import overload
+  <div><pre><code class="language-python">from overloading import overload
 from collections import Iterable
 class Perro:
     
@@ -217,22 +217,28 @@ def alimentar(comida : int | Interable[int]):
         for c in comida:
             self.hambre -= c
     else:
-        self.hambre -= comida</code></pre>
+        self.hambre -= comida</code></pre></div>
 
   <h2>Herencia, <code>super().__init__()</code></h2>
   <div style="text-align: justify">
     <p>Python permite que clases hereden a otras, absorviendo sus atributos y métodos. Sin embargo, para que un objeto de una clase <em>sea</em> de tipo de su clase madre, debe, al momento de instanciacion, instanciar tambien con el método de su madre. Esto se logra a traves de la referencia que todas las clases tiene a su clase inmediata superior, <code>super()</code></p>
   </div>
 
-  <pre><code class="language-python">class ClaseMadre():
+  <div><pre><code class="language-python">class ClaseMadre():
 
 class ClaseHija(claseMadre):
     def __init__(self):
-        super().__init__(self):</code></pre>
+        super().__init__(self):</code></pre></div>
 
   <p><em>Nota todas las clases heredan implícitamente a <code>object</code></em></p>
 
   <h2><code>type</code>, <code>super()</code>, <em><code>__class__</code></em>, <em><code>__base__</code></em>, <em><code>__subclass__</code></em>, <code>metaclass=</code></h2>
 
   <h3>Creación de Tipos en tiempo de Ejecución</h3>
-</div> 
+</div>
+<footer id="footer" hx-swap-oob="true">
+    <div style="display:flex; text-justify: right; justify-content: space-between;">
+        <h3><a class="flecha" hx-get="./iv.%20Funciones.html" hx-target="#contenido" hx-select="#contenido" hx-swap="outerHTML"> <span class="material-symbols-outlined" style="align-self: center;">west</span> Funciones </a></h3>
+        <h3><a class="flecha" hx-get="./v.%20Objetos.%202)%20Métodos%20Mágicos%20(__dunder__).html" hx-target="#contenido" hx-select="#contenido" hx-swap="outerHTML"> Métodos Mágicos <span class="material-symbols-outlined" style="align-self: center;">east</span> </a></h3>
+    </div>
+</footer> 
