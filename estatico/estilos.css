@@ -8,9 +8,10 @@
   --texto-secundario: #b0b0b0;
   --borde: #333333;
 }
-*{
-  transition: all 300ms ease-in-out;
-}
+  *{
+    transition: all 300ms ease-in-out;
+    font-family: 'Roboto Mono', 'Inconsolata', Tahoma, Geneva, Verdana, sans-serif;
+  }
 
 *:not(html,body,#contenedor-pagina){scrollbar-width: none;}
 *:not(html,body,#contenedor-pagina)::-webkit-scrollbar{display: none;}
@@ -38,7 +39,6 @@ body{
   / 20vw 1fr
   ;
   gap: 2.5vw;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
 }
 
@@ -157,7 +157,7 @@ code{
   border-radius: .3em;
   background-color: var(--acento);
   color: var(--fondo);
-  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-family: 'Roboto Mono', 'Consolas', 'Monaco', 'Courier New', monospace;
   font-size: 0.9em;
 }
 
@@ -168,14 +168,55 @@ div:has(>pre>code){
   padding: 1em;
   margin: 1vh 0;
   border-radius: .5em;
-  background-color: var(--negro);
+  background-color: #1e1e1e;
   border: 1px solid var(--borde);
   overflow-x: auto;
+}
+
+/* Estilos específicos para bloques de código Python */
+div:has(>pre>code[class*="language-python"]){
+  background-color: #2d2d2d;
+  border: 1px solid #404040;
 }
 div:has(>pre>code)>pre,div:has(>pre>code)>pre>code{
   padding: 0!important;
   margin: 0!important;
   background-color: transparent!important;
+}
+
+/* Mejoras para el código Python dentro de los bloques */
+div:has(>pre>code[class*="language-python"])>pre>code{
+  color: #e6e6e6 !important;
+  font-family: 'Roboto Mono', 'Consolas', 'Monaco', 'Courier New', monospace !important;
+  font-size: 0.95em !important;
+  line-height: 1.5 !important;
+}
+
+/* Colores específicos para elementos de Python */
+div:has(>pre>code[class*="language-python"]) .hljs-keyword,
+div:has(>pre>code[class*="language-python"]) .hljs-built_in {
+  color: #569cd6 !important;
+}
+
+div:has(>pre>code[class*="language-python"]) .hljs-string {
+  color: #ce9178 !important;
+}
+
+div:has(>pre>code[class*="language-python"]) .hljs-number {
+  color: #b5cea8 !important;
+}
+
+div:has(>pre>code[class*="language-python"]) .hljs-comment {
+  color: #6a9955 !important;
+  font-style: italic;
+}
+
+div:has(>pre>code[class*="language-python"]) .hljs-function {
+  color: #dcdcaa !important;
+}
+
+div:has(>pre>code[class*="language-python"]) .hljs-params {
+  color: #9cdcfe !important;
 }
 
 /* Mejoras adicionales para tipografía y espaciado */

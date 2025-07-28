@@ -5,7 +5,8 @@
     -->
         <link rel="stylesheet" href="estatico/estilos.css" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-        <script hx-preserve="true" src="https://unpkg.com/htmx.org@1.9.6"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" />
+        <script hx-preserve="true" src="https://unpkg.com/htmx.org@2.0.1"></script>
         <link rel="stylesheet" href="/path/to/styles/default.min.css">
         <script src="/path/to/highlight.min.js"></script>
     </head>
@@ -149,5 +150,15 @@
             </span> </a>
         </h3></div>
     </footer>
+    <script>
+        // Verificar si HTMX está cargado
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof htmx !== 'undefined') {
+                console.log('HTMX está cargado correctamente');
+            } else {
+                console.error('HTMX no está cargado');
+            }
+        });
+    </script>
     </body>
 </html>
