@@ -1,0 +1,145 @@
+<div id="contenido">
+  <h1>Tamaño de los tipos principales (CPython | 64-bit)</h1>
+
+  <h2>Primitivos</h2>
+
+  <table>
+    <tr>
+      <th>Tipo</th>
+      <th>Tamaño</th>
+    </tr>
+    <tr>
+      <td><code>object</code></td>
+      <td>16 bytes</td>
+    </tr>
+    <tr>
+      <td><code>bool</code></td>
+      <td>28 bytes</td>
+    </tr>
+  </table>
+
+  <h3>Numéricos</h3>
+
+  <table>
+    <tr>
+      <th>Tipo</th>
+      <th>Representa</th>
+      <th>Tamaño</th>
+    </tr>
+    <tr>
+      <td><code>int</code></td>
+      <td>Enteros</td>
+      <td>28 bytes (+4)</td>
+    </tr>
+    <tr>
+      <td><code>float</code></td>
+      <td>Reales (PF)</td>
+      <td>24 bytes</td>
+    </tr>
+    <tr>
+      <td><code>complex</code></td>
+      <td>Complejos</td>
+      <td>32 bytes</td>
+    </tr>
+  </table>
+
+  <h2>Colecciones</h2>
+
+  <table>
+    <tr>
+      <th>Tipo</th>
+      <th>Especie</th>
+      <th>Tamaño vacío</th>
+      <th>Tamaño n elem.</th>
+      <th>C. Espacial</th>
+    </tr>
+    <tr>
+      <td><code>list</code></td>
+      <td>S. Mutable</td>
+      <td>56 bytes</td>
+      <td>56 + n^2/(2^3) + 6*n bytes</td>
+      <td>O(n^2)</td>
+    </tr>
+    <tr>
+      <td><code>bytearray</code></td>
+      <td>S. Mutable</td>
+      <td>56 bytes</td>
+      <td>58 + 3(n^2)/4 bytes</td>
+      <td>O(n^2)</td>
+    </tr>
+    <tr>
+      <td><code>str</code></td>
+      <td>S. Inmutable</td>
+      <td>49 bytes</td>
+      <td>49 + n bytes</td>
+      <td>O(n)</td>
+    </tr>
+    <tr>
+      <td><code>tuple</code></td>
+      <td>S. Inmutable</td>
+      <td>28 bytes</td>
+      <td>40 + 8*n bytes</td>
+      <td>O(n)</td>
+    </tr>
+    <tr>
+      <td><code>range</code></td>
+      <td>S. Inmutable</td>
+      <td>24 bytes</td>
+      <td>48 bytes</td>
+      <td>O(1)</td>
+    </tr>
+    <tr>
+      <td><code>bytes</code></td>
+      <td>S. Inmutable</td>
+      <td>32 bytes</td>
+      <td>56 + n^2 bytes</td>
+      <td>O(n^2)</td>
+    </tr>
+    <tr>
+      <td><code>set</code></td>
+      <td>Conjunto</td>
+      <td>232 bytes</td>
+      <td>216 + 2n* 512*(512//n) bytes</td>
+      <td>O(n)</td>
+    </tr>
+    <tr>
+      <td><code>frozenset</code></td>
+      <td>Conjunto</td>
+      <td>232 bytes</td>
+      <td>216 + 2n* 512*(512//n) bytes</td>
+      <td>O(n)</td>
+    </tr>
+    <tr>
+      <td><code>dict</code></td>
+      <td>Mapeo</td>
+      <td>64 bytes</td>
+      <td>64 + k + log2(k) + v bytes</td>
+      <td>O(n+m)</td>
+    </tr>
+  </table>
+
+  <h2>Constantes</h2>
+
+  <table>
+    <tr>
+      <th>Constante</th>
+      <th>Tipo</th>
+      <th>Tamaño</th>
+    </tr>
+    <tr>
+      <td><code>None</code></td>
+      <td><code>NoneType</code></td>
+      <td>16 bytes</td>
+    </tr>
+    <tr>
+      <td><code>...</code> ó <code>Ellipsis</code></td>
+      <td><code>ellipsis</code></td>
+      <td>16 bytes</td>
+    </tr>
+    <tr>
+      <td><code>NotImplemented</code></td>
+      <td><code>NotImplementedType</code></td>
+      <td>16 bytes</td>
+    </tr>
+  </table>
+</div> 

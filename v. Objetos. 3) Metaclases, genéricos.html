@@ -1,0 +1,139 @@
+<div id="contenido">
+  <div style="text-align: justify">
+    <p>En la parte 1) del módulo de objetos se hizo particular énfasis en que todas y cada una de las entidades en Python son objetos. Todas. Las <em>clases</em>, también.</p>
+  </div><br>
+
+  <p>Cuando el intérprete corre una pieza de código como la siguiente:</p>
+  <pre><code class="language-python">class MiClase():
+    ...</code></pre>
+  <p>Lo que hace es <em>instanciar</em> un <strong>objeto</strong> con nombre <code>MiClase</code>.<br>
+  Las clases son objetos especiales en python en el sentido de que son objetos capaces de crear otros objetos. Pero siguen siendo objetos.</p>
+
+  <ul>
+    <li>Se los puede asignar a variables:</li>
+  </ul>
+  <pre><code class="language-python">unaVariableCualquiera : Any = MiClase</code></pre>
+  <ul>
+    <li>Se les puede agregar atributos:</li>
+  </ul>
+  <pre><code class="language-python">MiClase.atributo = 'algo'</code></pre>
+  <ul>
+    <li>Se los puede pasar como parámetros a funciones:</li>
+  </ul>
+  <pre><code class="language-python">print(MiClase)
+#>>> <class '__main__.MiClase'>
+
+print(unaVariableCualquiera())
+#>>> <__main__.MiClase object at 0x8997b4c></code></pre>
+
+  <h2><code>type()</code></h2>
+  <p>El paradigma de Clases como Objetos sugiere dos preguntas: ¿Quién arma las clases? y ¿De qué tipo es una clase?<br>
+  La clases son objetos de tipo <code>class</code>, que a su vez es un tipo heredero de <code>type</code> y que en última instancia deriva de <code>object</code>.</p>
+
+  <p>Sí, <code>type</code>, el mismo type que devuelve el tipo de un objeto. <code>type</code> es la clase que crea todas las clases del programador en el curso de un programa de Python. Y, a través de polimorfismo, su API está expuesta al programador.</p>
+
+  <p>De la misma forma que podemos llamar</p>
+  <pre><code class="language-python">type(o: object) #>>> devuelve el tipo del objeto 'o'</code></pre>
+  <p>Podemos llamar:</p>
+  <pre><code class="language-python">type(name: str, bases : tuple[_T,...], attrs : dict) #>>> devuelve un nuevo objeto del tipo clase con la estructura provista.</code></pre>
+  <p>donde:</p>
+  <ul>
+    <li><code>name</code> : una <code>str</code> el nombre de la clase;</li>
+    <li><code>base</code> : una <code>tuple</code> que contiene las clases madre;</li>
+    <li><code>attrs</code> : un <code>dict</code> que contiene los atributos de la clase.</li>
+  </ul>
+
+  <table>
+    <tr>
+      <th>El sintagma:</th>
+      <th>Es equivalente a:</th>
+    </tr>
+    <tr>
+      <td>
+        <pre><code class="language-python">class Perro(Animal,Terricola):
+    familia = 'mamiferos'</code></pre>
+      </td>
+      <td>
+        <pre><code class="language-python">Perro = type('Perro',(Animal,Terricola),{'familia':'mamiferos'})</code></pre>
+      </td>
+    </tr>
+  </table>
+
+  <p>Incluso se pueden definir métodos usando <code>lambda</code>s o funciones:</p>
+  <pre><code class="language-python">Perro = type \
+    (
+        name = 'Perro',
+        bases = (Animal,Terricola),
+        attrs = \
+        {
+            #Atributos de Clase
+            'familia'   :'mamiferos',
+            
+            #Métodos de la instancia
+            '__init__'  : lambda self, nombre : setattr(self,'nombre',nombre),
+            'ladrar'    : lambda self : print(f"{self.nombre}: ¡Guau Guau!")
+        }
+    )
+
+juan = Perro("juan")
+juan.ladrar()
+
+#>>> juan: ¡Guau Guau!
+
+def initGato(self, nombre):
+    self.nombre = nombre
+
+def maullar(self):
+    print(f"{self.nombre}: Miau")
+
+Gato = type \
+    (
+        name = 'Gato',
+        bases = (Animal,Terricola),
+        attrs = \
+        {
+            #Atributos de Clase
+            'familia'   :'mamiferos',
+            
+            #Métodos de la instancia
+            '__init__'  : initGato,
+            'ladrar'    : maullar
+        }
+    )
+
+carlos = Gato("carlos")
+carlos.maullar()
+
+#>>> carlos: Miau</code></pre>
+
+  <p>En ambos ejemplos anteriores</p>
+
+  <h2>Metaclases</h2>
+
+  <p>Podemos definir el tipo <em>Singleton</em> así:</p>
+  <pre><code class="language-python">class Singleton(type):
+    __instancias : dict = {} # La clase guarda un diccionario de instancias.
+
+    def __call__(cls, *posicionales, **nominales):
+        if cls not in cls.__instancias: # Si no hay una instancia ya creada, se crea una nueva.
+            cls.__instancias[cls] = super(Singleton, cls).__call__(*posicionales, **nominales) # Se usa la clase (cls) para determinar la llave de cada entrada en el diccionario. Garantizando que no haya coliciones.
+        return cls.__instancias[cls]</code></pre>
+
+  <p>Al derivar nuestro <em>Singleton</em> de <code>type</code> y sobrecargar su método <code>__call__</code>, prodemos utilizaar el argumento <code>metaclass = ...</code> en todos los tipos que queremos garatizar se ajusten al patrón.</p>
+
+  <p><em>e.g.</em></p>
+  <pre><code class="language-python">class ConfiguracionGlobal(metaclass=Singleton):
+    __config : dict = \
+        {
+            '[ajuste]' : '[valorPorDefecto]',
+            ...
+        }
+    
+    def __init__ (self, rutaConfig : str, ...) -> None:
+        with open(filename = rutaConfig, mode = "r", encoding = "utf-8") as archivoConfig:
+            type(self).__config = archivoConfig.read()</code></pre>
+
+  <p>En el ejemplo anterior, al declarar <code>Singleton</code> como metaclase de <code>ConfiguracionGlobal</code>, se sobre</p>
+
+  <h2>Genéricos</h2>
+</div> 
